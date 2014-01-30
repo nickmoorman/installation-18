@@ -57,7 +57,7 @@ var filters = {
 twitter.stream('statuses/filter', filters, function(stream) {
   stream.on('data', function(tweet) {
     console.log('Received tweet ' + tweet.id);
-    io.sockets.emit('data', 'Received tweet ' + tweet.id);
+    io.sockets.emit('tweet', tweet);
   });
 });
 
