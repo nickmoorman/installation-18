@@ -51,62 +51,93 @@ io.sockets.on('connection', function(socket) {
 var twitter = new ntwitter(require('./credentials.js').credentials);
 
 // Search terms and official account IDs, broken down by brand
-var tr = {
-  terms: ['techrepublic', 'tech republic', 't.co'],
-  accountId: '6486602'
-};
-var sp = {
-  terms: ['smartplanet', 'smart planet', 'smrt.io'],
-  accountId: '34731203'
-};
-var zd = {
-  terms: ['zdnet', 'zd net', 'z d net', 'zd.net'],
-  accountId: '3819701'
-};
-var tpr = {
-  terms: ['techproresearch', 'tech pro research'],
-  accountId: '1415819869'
-};
-// TODO: Automate
-var officialAccounts = '6486602,34731203,3819701,1415819869';
+var brands = [
+  {
+    name: 'TechRepublic',
+    shortname: 'TR',
+    socket: 'tr',
+    terms: ['techrepublic', 'tech republic', 't.co'],
+    accountId: '6486602'
+  },
+  {
+    name: 'SmartPlanet',
+    shortname: 'SP',
+    socket: 'sp',
+    terms: ['smartplanet', 'smart planet', 'smrt.io'],
+    accountId: '34731203'
+  },
+  {
+    name: 'ZDNet',
+    shortname: 'ZD',
+    socket: 'zd',
+    terms: ['zdnet', 'zd net', 'z d net', 'zd.net'],
+    accountId: '3819701'
+  },
+  {
+    name: 'Tech Pro Research',
+    shortname: 'TPR',
+    socket: 'tpr',
+    terms: ['techproresearch', 'tech pro research'],
+    accountId: '1415819869'
+  }
+];
+var searchTerms = brands.map(function(brand) {
+  return brand.terms.join(',');
+}).join(',');
+var officialAccounts = brands.map(function(brand) {
+  return brand.accountId;
+}).join(',');
 
 // Filters to use for Twitter stream
 var filters = {
   // Terms to search for
-  'track': tr.terms.concat(sp.terms).concat(zd.terms).concat(tpr.terms),
+  'track': searchTerms,
   // Account IDs to search for
   'follow': officialAccounts
-}
+};
 
-function isBrandMatch(brand, tweet) {
-  if (tweet.user.id == brand.accountId) {
-    return true;
+// Various metrics for accumulated data
+var metrics = {
+  totalTweets: 0,
+  tweetsPerBrand: {},
+  tweetsPerLanguage: {
+    'unknown': 0
   }
-
-  var regex = new RegExp('(\\b' + brand.terms.join('\\b)|(\\b') + '\\b)', 'i');
-  console.log(regex);
-
-  return regex.test(tweet.text);
-}
+};
 
 twitter.stream('statuses/filter', filters, function(stream) {
   stream.on('data', function(tweet) {
     console.log('Received tweet ' + tweet.id);
     io.sockets.emit('tweet', tweet);
+    metrics.totalTweets += 1;
 
     // Send messages based on brand
-    if (isBrandMatch(tr, tweet)) {
-      io.sockets.emit('tr', tweet);
+    // TODO: Special handling for ZDNet tweets with t.co URLs
+    brands.forEach(function(brand) {
+      var regex = new RegExp('(\\b' + brand.terms.join('\\b)|(\\b') + '\\b)', 'i');
+      if (tweet.user.id == brand.accountId || regex.test(tweet.text)) {
+        io.sockets.emit(brand.socket, tweet);
+
+        // Update brand metrics
+        if (metrics.tweetsPerBrand[brand.socket] == undefined) {
+          metrics.tweetsPerBrand[brand.socket] = 0;
+        }
+        metrics.tweetsPerBrand[brand.socket] += 1;
+      }
+    });
+
+    // Update language metrics
+    if (tweet.lang) {
+      if (metrics.tweetsPerLanguage[tweet.lang] == undefined) {
+        metrics.tweetsPerLanguage[tweet.lang] = 0;
+      }
+      metrics.tweetsPerLanguage[tweet.lang] += 1;
+    } else {
+      metrics.tweetsPerLanguage['unknown'] += 1;
     }
-    if (isBrandMatch(sp, tweet)) {
-      io.sockets.emit('sp', tweet);
-    }
-    if (isBrandMatch(zd, tweet)) {
-      io.sockets.emit('zd', tweet);
-    }
-    if (isBrandMatch(tpr, tweet)) {
-      io.sockets.emit('tpr', tweet);
-    }
+
+    // Send updated metrics
+    io.sockets.emit('metrics', metrics);
   });
 });
 
