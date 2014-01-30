@@ -22,29 +22,64 @@
 		</header>
 
 		<div class="row">
-			<div class="large-12 columns">
+			<div class="tabs-wrapper">
+					<input type="radio" name="tab" id="tab1" class="tab-head" checked="checked"/>
+					<label for="tab1">All</label>
+					<input type="radio" name="tab" id="tab2" class="tab-head" />
+					<label for="tab2">Tech Repuplic</label>
+					<input type="radio" name="tab" id="tab3" class="tab-head" />
+					<label for="tab3">Smart Planet</label>
+					<input type="radio" name="tab" id="tab4" class="tab-head" />
+					<label for="tab4">ZD Net</label>
+				
+				<div class="tab-body-wrapper">
+					<div id="tab-body-1" class="tab-body">
+						<!-- Inject tweets here -->
+						<div class="large-6 columns">
+							<p>All Tweets</p>
+						</div>
 
-				<dl class="tabs" data-tab>
-				  <dd class="active"><a href="#all">All</a></dd>
-				  <dd><a href="#tr">Tech Republic</a></dd>
-				  <dd><a href="#sp">SmartPlanet</a></dd>
-				  <dd><a href="#zd">ZD Net</a></dd>
-				</dl>
+						<!-- Inject metrics here -->
+						<div class="large-6 columns">
+							<p>All Metrics</p>
+						</div>
+					</div>
+					
+					<div id="tab-body-2" class="tab-body">
+						<!-- Inject tweets here -->
+						<div class="large-6 columns">
+							<p>TR Tweets</p>
+						</div>
 
-				<div class="tabs-content">
-				  <div class="content active" id="all">
-				    <div class="large-6 columns">Tweets</div>
-				    <div class="large-6 columns">Metrics</div>
-				  </div>
-				  <div class="content" id="tr">
-				    <p>Second panel content goes here...</p>
-				  </div>
-				  <div class="content" id="sp">
-				    <p>Third panel content goes here...</p>
-				  </div>
-				  <div class="content" id="zd">
-				    <p>Fourth panel content goes here...</p>
-				  </div>
+						<!-- Inject metrics here -->
+						<div class="large-6 columns">
+							<p>TR Metrics</p>
+						</div>
+					</div>
+					
+					<div id="tab-body-3" class="tab-body">
+						<!-- Inject tweets here -->
+						<div class="large-6 columns">
+							<p>SP Tweets</p>
+						</div>
+
+						<!-- Inject metrics here -->
+						<div class="large-6 columns">
+							<p>SP Metrics</p>
+						</div>
+					</div>
+					
+					<div id="tab-body-4" class="tab-body">
+						<!-- Inject tweets here -->
+						<div class="large-6 columns">
+							<p>ZD Tweets</p>
+						</div>
+
+						<!-- Inject metrics here -->
+						<div class="large-6 columns">
+							<p>ZD Metrics</p>
+						</div>
+					</div>
 				</div>
 
 			</div>
