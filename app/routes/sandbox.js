@@ -14,7 +14,6 @@ exports.sandbox = function(req, res) {
   });
 };
 
-
 exports.twitter = function(req, res) {
   var twitter = new ntwitter({
     consumer_key: 'bViLt6w2D1bQlWfUHb7A',
@@ -23,7 +22,11 @@ exports.twitter = function(req, res) {
     access_token_secret: '54u3yLbz9bCMh8CEun9j5PBkQLmPzV7R9ElYzLPgbdGos'
   });
 
-  twitter.stream('statuses/sample', function(stream) {
+  var filters = {
+    'track': ['cbs', 'cbs interactive', 'cnet', 'techrepublic', 'smartplanet', 'tech pro research', 'zdnet']
+  }
+
+  twitter.stream('statuses/filter', filters, function(stream) {
     stream.on('data', function(data) {
       console.log(data);
     });
