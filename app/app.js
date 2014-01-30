@@ -3,7 +3,6 @@
  */
 
 var express = require('express');
-var routes = require('./routes');
 var sandbox = require('./routes/sandbox');
 var http = require('http');
 var path = require('path');
@@ -26,7 +25,7 @@ app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(app.router);
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '../public')));
 
 // development only
 if ('development' == app.get('env')) {
@@ -36,11 +35,6 @@ if ('development' == app.get('env')) {
 // ----------------------------------------------------------------------------
 // Routes
 // ----------------------------------------------------------------------------
-app.get('/', routes.index);
-// NOTE: will probably move this to index route
-app.get('/client', function(req, res) {
-  res.sendfile(__dirname + '/views/client.html');
-});
 app.get('/sandbox', sandbox.sandbox);
 app.get('/sandbox/twitter', sandbox.twitter);
 
