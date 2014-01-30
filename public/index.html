@@ -1,17 +1,27 @@
 <!doctype html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="description" content="Installation 18">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Installation 18</title>
+		<head>
+				<meta charset="utf-8">
+				<meta name="description" content="Installation 18">
+				<meta name="viewport" content="width=device-width, initial-scale=1">
+				<title>Installation 18</title>
 
-        <!-- AMD Loader http://headjs.com/ -->
-        <script type="text/javascript" src="js/libs/head.js"></script>
+				<!-- Restructure as necessary, but it works now!!!  =D  -->
+				<script src="/socket.io/socket.io.js"></script>
+				<script>
+					var socket = io.connect('http://localhost:3000');
+					socket.on('tweet', function(data) {
+						console.log(data);
+					});
+				</script>
+
+				<!-- AMD Loader http://headjs.com/ -->
+				<script type="text/javascript" src="js/libs/head.js"></script>
 		<link rel="stylesheet" href="css/foundation.css" />
         <link rel=stylesheet href="css/styles.css">
     </head>
     <body data-role="page">
+
 		<header>
 			<div class="row">
 				<div>
@@ -87,7 +97,7 @@
 			</div>
 		</div>
 
-        <script type="text/javascript" src="js/main.js"></script>
+				<script type="text/javascript" src="js/main.js"></script>
 
-    </body>
+		</body>
 </html>
