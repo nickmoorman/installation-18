@@ -10,25 +10,25 @@
   'use strict';
 
   // Used to retrieve Foundation media queries from CSS.
-  if($('head').has('.foundation-mq-small').length === 0) {
-    $('head').append('<meta class="foundation-mq-small">');
-  }
+  // if($('head').has('.foundation-mq-small').length === 0) {
+  //   $('head').append('<meta class="foundation-mq-small">');
+  // }
 
-  if($('head').has('.foundation-mq-medium').length === 0) {
-    $('head').append('<meta class="foundation-mq-medium">');
-  }
+  // if($('head').has('.foundation-mq-medium').length === 0) {
+  //   $('head').append('<meta class="foundation-mq-medium">');
+  // }
 
-  if($('head').has('.foundation-mq-large').length === 0) {
-    $('head').append('<meta class="foundation-mq-large">');
-  }
+  // if($('head').has('.foundation-mq-large').length === 0) {
+  //   $('head').append('<meta class="foundation-mq-large">');
+  // }
 
-  if($('head').has('.foundation-mq-xlarge').length === 0) {
-    $('head').append('<meta class="foundation-mq-xlarge">');
-  }
+  // if($('head').has('.foundation-mq-xlarge').length === 0) {
+  //   $('head').append('<meta class="foundation-mq-xlarge">');
+  // }
 
-  if($('head').has('.foundation-mq-xxlarge').length === 0) {
-    $('head').append('<meta class="foundation-mq-xxlarge">');
-  }
+  // if($('head').has('.foundation-mq-xxlarge').length === 0) {
+  //   $('head').append('<meta class="foundation-mq-xxlarge">');
+  // }
 
   // Enable FastClick if present
 
@@ -119,72 +119,73 @@
   for(; lastTime < vendors.length && !requestAnimationFrame; lastTime++) {
     requestAnimationFrame = window[ vendors[lastTime] + "RequestAnimationFrame" ];
     cancelAnimationFrame = cancelAnimationFrame ||
-      window[ vendors[lastTime] + "CancelAnimationFrame" ] || 
+      window[ vendors[lastTime] + "CancelAnimationFrame" ] ||
       window[ vendors[lastTime] + "CancelRequestAnimationFrame" ];
   }
 
   function raf() {
     if ( animating ) {
       requestAnimationFrame( raf );
-      jQuery.fx.tick();
+      tire.fx.tick();
     }
   }
 
-  if ( requestAnimationFrame ) {
-    // use rAF
-    window.requestAnimationFrame = requestAnimationFrame;
-    window.cancelAnimationFrame = cancelAnimationFrame;
-    jQuery.fx.timer = function( timer ) {
-      if ( timer() && jQuery.timers.push( timer ) && !animating ) {
-        animating = true;
-        raf();
-      }
-    };
+  // if ( requestAnimationFrame ) {
+  //   // use rAF
+  //   window.requestAnimationFrame = requestAnimationFrame;
+  //   window.cancelAnimationFrame = cancelAnimationFrame;
+  //   tire.fx.timer = function( timer ) {
+  //     if ( timer() && tire.timers.push( timer ) && !animating ) {
+  //       animating = true;
+  //       raf();
+  //     }
+  //   };
 
-    jQuery.fx.stop = function() {
-      animating = false;
-    };
-  } else {
-    // polyfill
-    window.requestAnimationFrame = function( callback, element ) {
-      var currTime = new Date().getTime(),
-        timeToCall = Math.max( 0, 16 - ( currTime - lastTime ) ),
-        id = window.setTimeout( function() {
-          callback( currTime + timeToCall );
-        }, timeToCall );
-      lastTime = currTime + timeToCall;
-      return id;
-    };
+  //   tire.fx.stop = function() {
+  //     animating = false;
+  //   };
+  // } else {
+  //   // polyfill
+  //   window.requestAnimationFrame = function( callback, element ) {
+  //     var currTime = new Date().getTime(),
+  //       timeToCall = Math.max( 0, 16 - ( currTime - lastTime ) ),
+  //       id = window.setTimeout( function() {
+  //         callback( currTime + timeToCall );
+  //       }, timeToCall );
+  //     lastTime = currTime + timeToCall;
+  //     return id;
+  //   };
 
-    window.cancelAnimationFrame = function(id) {
-      clearTimeout(id);
-    };
-      
-  }
+  //   window.cancelAnimationFrame = function(id) {
+  //     clearTimeout(id);
+  //   };
 
-  }( jQuery ));
+  // }
+
+  }( tire ));
 
 
   function removeQuotes (string) {
     if (typeof string === 'string' || string instanceof String) {
-      string = string.replace(/^[\\/'"]+|(;\s?})+|[\\/'"]+$/g, '');
+      //string = string.replace(/^[\\/'"]+|(;\s?})+|[\\/'"]+$/g, '');
     }
 
     return string;
   }
 
   window.Foundation = {
+
     name : 'Foundation',
 
     version : '5.0.3',
 
-    media_queries : {
-      small : S('.foundation-mq-small').css('font-family').replace(/^[\/\\'"]+|(;\s?})+|[\/\\'"]+$/g, ''),
-      medium : S('.foundation-mq-medium').css('font-family').replace(/^[\/\\'"]+|(;\s?})+|[\/\\'"]+$/g, ''),
-      large : S('.foundation-mq-large').css('font-family').replace(/^[\/\\'"]+|(;\s?})+|[\/\\'"]+$/g, ''),
-      xlarge: S('.foundation-mq-xlarge').css('font-family').replace(/^[\/\\'"]+|(;\s?})+|[\/\\'"]+$/g, ''),
-      xxlarge: S('.foundation-mq-xxlarge').css('font-family').replace(/^[\/\\'"]+|(;\s?})+|[\/\\'"]+$/g, '')
-    },
+    // media_queries : {
+    //   small : S('.foundation-mq-small').css('font-family').replace(/^[\/\\'"]+|(;\s?})+|[\/\\'"]+$/g, ''),
+    //   medium : S('.foundation-mq-medium').css('font-family').replace(/^[\/\\'"]+|(;\s?})+|[\/\\'"]+$/g, ''),
+    //   large : S('.foundation-mq-large').css('font-family').replace(/^[\/\\'"]+|(;\s?})+|[\/\\'"]+$/g, ''),
+    //   xlarge: S('.foundation-mq-xlarge').css('font-family').replace(/^[\/\\'"]+|(;\s?})+|[\/\\'"]+$/g, ''),
+    //   xxlarge: S('.foundation-mq-xxlarge').css('font-family').replace(/^[\/\\'"]+|(;\s?})+|[\/\\'"]+$/g, '')
+    // },
 
     stylesheet : $('<style></style>').appendTo('head')[0].sheet,
 
@@ -342,7 +343,7 @@
         } else {
           var query = Foundation.media_queries[media];
           if(query !== undefined) {
-            Foundation.stylesheet.insertRule('@media ' + 
+            Foundation.stylesheet.insertRule('@media ' +
               Foundation.media_queries[media] + '{ ' + rule + ' }');
           }
         }
@@ -416,4 +417,4 @@
     });
   };
 
-}(jQuery, this, this.document));
+}(window.tire, this, this.document));

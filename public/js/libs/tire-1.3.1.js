@@ -1833,6 +1833,13 @@
       return selector === undefined ? tire(children) : tire(children).filter(selector);
     },
 
+    siblings: function (selector) {
+      var siblings = [],
+          parent = this.pluck('parentNode');
+
+      return selector === undefined ? tire(parent).children() : tire(parent).children().filter(selector);
+    },
+
     /**
      * Get text for the first element in the collection
      * Set text for every element in the collection

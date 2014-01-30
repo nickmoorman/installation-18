@@ -19,22 +19,28 @@
     events : function () {
       $(this.scope).off('.tab').on('click.fndtn.tab', '[data-tab] > dd > a', function (e) {
         e.preventDefault();
-
+        //console.log(this);
         var tab = $(this).parent(),
             tabs = tab.closest('[data-tab]'),
-            target = $('#' + this.href.split('#')[1]),
+            target = $('#' + this[0].href.split('#')[1]),
             siblings = tab.siblings(),
             settings = tabs.data('tab-init');
-        
+
         // allow usage of data-tab-content attribute instead of href
         if ($(this).data('tab-content')) {
           target = $('#' + $(this).data('tab-content').split('#')[1]);
         }
-        
-        tab.addClass(settings.active_class).trigger('opened');
+
+        //tab.addClass(settings.active_class).trigger('opened');
         siblings.removeClass(settings.active_class);
-        target.siblings().removeClass(settings.active_class).end().addClass(settings.active_class);
-        settings.callback(tab);
+
+        //target.siblings().removeClass(settings.active_class).end().addClass(settings.active_class);
+        target.siblings().removeClass(settings.active_class);
+        target.addClass(settings.active_class);
+
+        tab.addClass(settings.active_class);
+
+        //settings.callback(tab);
         tabs.trigger('toggled', [tab]);
       });
     },
@@ -43,4 +49,4 @@
 
     reflow : function () {}
   };
-}(jQuery, this, this.document));
+}(tire, this, this.document));
