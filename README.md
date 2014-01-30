@@ -8,3 +8,8 @@ Aggregate the data into a statistical live dashboard.
 
 [Issue Tracker](http://redmine.nickmoorman.com/projects/installation18)
 
+#Setup
+cd app
+npm install
+node app.js
+

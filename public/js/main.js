@@ -1,15 +1,14 @@
 head.load([
-	{"tire" : "js/tire-1.3.1.js"},
-	{"underscore" : "js/underscore.js"},
-	{"backbone" : "js/backbone.js"}
+	{"tire" : "js/libs/tire-1.3.1.js"},
+	{"underscore" : "js/libs/underscore.js"},
+	{"backbone" : "js/libs/backbone.js"}
 ]);
 
-head.ready(['tire','backbone'], function () {
+head.ready(['tire','underscore','backbone'], function () {
     // some callback stuff
     console.log("App Init!!");
     console.log("Tire: ", $);
     console.log("Underscore: ", _);
     console.log("backbone: ", Backbone);
 
-    console.log($('html').attr('class'));
 });
