@@ -613,7 +613,7 @@ input[type="checkbox"] + label, input[type="radio"] + label { margin-left:0; mar
       }
   }
 
-#tab1:checked ~ .tab-body-wrapper #tab-body-1, #tab2:checked ~ .tab-body-wrapper #tab-body-2, #tab3:checked ~ .tab-body-wrapper #tab-body-3, #tab4:checked ~ .tab-body-wrapper #tab-body-4 {
+#tab1:checked ~ .tab-body-wrapper #all, #tab2:checked ~ .tab-body-wrapper #tr, #tab3:checked ~ .tab-body-wrapper #sp, #tab4:checked ~ .tab-body-wrapper #zd {
   position: relative;
   top: 0px;
   /* Choose one */
