@@ -8,12 +8,58 @@
 
         <!-- AMD Loader http://headjs.com/ -->
         <script type="text/javascript" src="js/libs/head.js"></script>
-
+		<link rel="stylesheet" href="css/foundation.css" />
         <link rel=stylesheet href="css/styles.css">
-
     </head>
     <body>
+		<header>
+			<div class="row">
+				<div>
+					<h1 class="logo">Installation 18</h1>
+					<p>Explore the uncharted area of twitter data mining for all CBSi brands</p>
+				</div>
+			</div>
+		</header>
+
+		<div class="row">
+			<div class="large-12 columns">
+				
+				<dl class="tabs" data-tab>
+				  <dd class="active"><a href="#all">All</a></dd>
+				  <dd><a href="#tr">Tech Republic</a></dd>
+				  <dd><a href="#sp">SmartPlanet</a></dd>
+				  <dd><a href="#zd">ZD Net</a></dd>
+				</dl>
+
+				<div class="tabs-content">
+				  <div class="content active" id="all">
+				    <div class="large-6 columns">Tweets</div>
+				    <div class="large-6 columns">Metrics</div>
+				  </div>
+				  <div class="content" id="tr">
+				    <p>Second panel content goes here...</p>
+				  </div>
+				  <div class="content" id="sp">
+				    <p>Third panel content goes here...</p>
+				  </div>
+				  <div class="content" id="zd">
+				    <p>Fourth panel content goes here...</p>
+				  </div>
+				</div>
+
+			</div>
+		</div>
 
         <script type="text/javascript" src="js/main.js"></script>
+        <script type="text/javascript" src="js/libs/foundation/foundation.min.js"></script>
+		<script>
+		  $(document).foundation({
+		    tab: {
+		      callback : function (tab) {
+		        console.log(tab);
+		      }
+		    }
+		  });
+		</script>
     </body>
 </html>
