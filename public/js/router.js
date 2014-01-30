@@ -1,15 +1,13 @@
-App.router.user = App.router.user || {}
+//App.router.brands = App.router.brands || {}
 
-App.router.user = Backbone.Router.extend({
+App.router.brands = Backbone.Router.extend({
 
     routes:{
-        'about':       'about',
-        'show/:id':    'show',
-        '*actions':     'list'
+        ':brand':  'brand',
     },
 
     initialize:function () {
-        console.log('App.router.user Initialized');
+        console.log('App.router.brands Initialized');
         // App.userCollection = new App.collection.users();
         // localStorage.clear();
         // App.userCollection.create(new App.model.user({uid: 1, name:'Cliff', lastName: 'Burton'}));
@@ -17,6 +15,12 @@ App.router.user = Backbone.Router.extend({
         // App.userCollection.create(new App.model.user({uid: 3, name:'Alejandro', lastName: 'Blanco'}));
 
     },
+
+    brand:function (brand) {
+        console.log('Brand requested: ' + brand);
+        //alert('All brands requested ' + brand);
+    },
+
 
     list:function () {
         // this.changePage(new App.view.user.list({model: App.userCollection.findAll()}));

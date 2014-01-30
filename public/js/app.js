@@ -24,13 +24,13 @@ window.App = {
     util: {},
     data: {},
     JST:{},
-    userCollection: null,
-    contentHolder : null,
-    container: null,
+    brandCollection: null,
+    contentHolder : $('[data-role="content"]'),
+    container: $('[data-role="page"]'),
 
     initialize: function() {
-        console.log('App Initialized')
-        new App.router.user();
+        console.log('window.App Initialized')
+        new App.router.brands();
         Backbone.history.start();
     }
 }

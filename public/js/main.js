@@ -4,8 +4,7 @@ head.js([
 	{"backbone" : "js/libs/backbone.js"},
 	{"app" : "js/app.js"},
 	{"router" : "js/router.js"},
-	{"foundation" : "js/libs/foundation/foundation.js"},
-	{"foundation-tabs" : "js/libs/foundation/foundation.tab.js"}
+    {"socket.io" : "/socket.io/socket.io.js"}
 ]);
 
 head.ready(function() {
@@ -17,18 +16,5 @@ head.ready(function() {
     console.log("App: ", App);
 
     App.initialize();
-
-    console.log($(document));
-
-    head.ready(['tire', 'foundation'], function(){
-    	$(document).foundation({
-    	  tab: {
-    	    callback : function (tab) {
-    	      console.log(tab);
-    	    }
-    	  }
-    	});
-    });
-
 
 });
