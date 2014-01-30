@@ -6,19 +6,10 @@
 				<meta name="viewport" content="width=device-width, initial-scale=1">
 				<title>Installation 18</title>
 
-				<!-- Restructure as necessary, but it works now!!!  =D  -->
-				<script src="/socket.io/socket.io.js"></script>
-				<script>
-					var socket = io.connect('http://localhost:3000');
-					socket.on('tweet', function(data) {
-						console.log(data);
-					});
-				</script>
-
 				<!-- AMD Loader http://headjs.com/ -->
 				<script type="text/javascript" src="js/libs/head.js"></script>
-		<link rel="stylesheet" href="css/foundation.css" />
-        <link rel=stylesheet href="css/styles.css">
+				<link rel="stylesheet" href="css/foundation.css" />
+        		<link rel=stylesheet href="css/styles.css">
     </head>
     <body data-role="page">
 
@@ -48,6 +39,7 @@
 						<!-- Inject tweets here -->
 						<div class="large-6 columns">
 							<p>All Tweets</p>
+							<ul></ul>
 						</div>
 
 						<!-- Inject metrics here -->
@@ -60,6 +52,7 @@
 						<!-- Inject tweets here -->
 						<div class="large-6 columns">
 							<p>TR Tweets</p>
+							<ul></ul>
 						</div>
 
 						<!-- Inject metrics here -->
@@ -72,6 +65,7 @@
 						<!-- Inject tweets here -->
 						<div class="large-6 columns">
 							<p>SP Tweets</p>
+							<ul></ul>
 						</div>
 
 						<!-- Inject metrics here -->
@@ -84,6 +78,7 @@
 						<!-- Inject tweets here -->
 						<div class="large-6 columns">
 							<p>ZD Tweets</p>
+							<ul></ul>
 						</div>
 
 						<!-- Inject metrics here -->
@@ -95,6 +90,12 @@
 				</div>
 
 			</div>
+		</div>
+
+		<div class="row">
+			<ul id="tweets">
+
+			</ul>
 		</div>
 
 				<script type="text/javascript" src="js/main.js"></script>

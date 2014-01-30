@@ -14,6 +14,16 @@ App.router.brands = Backbone.Router.extend({
         // App.userCollection.create(new App.model.user({uid: 2, name:'Steve', lastName: 'Harris'}));
         // App.userCollection.create(new App.model.user({uid: 3, name:'Alejandro', lastName: 'Blanco'}));
 
+        allList = $('#all').find('ul');
+        trList = $('#tr').find('ul');
+        spList = $('#sp').find('ul');
+        zdList = $('#zd').find('ul');
+
+        App.socket.on('tweet', function(data){
+            console.log(data);
+            allList.append('<li>' + data.user.name + " " + data.text +'</li>');
+        });
+
     },
 
     brand:function (brand) {

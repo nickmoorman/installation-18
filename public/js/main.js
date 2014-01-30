@@ -4,6 +4,7 @@ head.js([
 	{"backbone" : "js/libs/backbone.js"},
 	{"app" : "js/app.js"},
 	{"router" : "js/router.js"},
+    {"socket" : "js/socket.js"},
     {"socket.io" : "/socket.io/socket.io.js"}
 ]);
 
@@ -14,6 +15,8 @@ head.ready(function() {
     console.log("Underscore: ", _);
     console.log("Backbone: ", Backbone);
     console.log("App: ", App);
+
+    App.socket = io.connect('http://localhost:3000');
 
     App.initialize();
 
