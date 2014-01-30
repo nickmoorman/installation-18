@@ -1,0 +1,16 @@
+http://dojotoolkit.org (Does Both)
+
+Jquery Alternatives
+===================
+http://tirejs.com/
+
+https://github.com/kupriyanenko/jbone
+http://minifiedjs.com/
+http://knockoutjs.com/index.html
+http://emberjs.com/
+http://mochi.github.io/mochikit/
+
+
+AMD Require Alternatives
+========================
+https://github.com/cujojs/curl
