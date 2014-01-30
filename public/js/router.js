@@ -23,7 +23,18 @@ App.router.brands = Backbone.Router.extend({
             console.log(data);
             allList.append('<li>' + data.user.name + " " + data.text +'</li>');
         });
-
+        App.socket.on('tr', function(tweet) {
+          console.log('tr tweet ' + tweet.id);
+        });
+        App.socket.on('sp', function(tweet) {
+          console.log('sp tweet ' + tweet.id);
+        });
+        App.socket.on('zd', function(tweet) {
+          console.log('zd tweet ' + tweet.id);
+        });
+        App.socket.on('tpr', function(tweet) {
+          console.log('tpr tweet ' + tweet.id);
+        });
     },
 
     brand:function (brand) {

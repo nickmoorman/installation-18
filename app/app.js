@@ -50,14 +50,63 @@ io.sockets.on('connection', function(socket) {
 // ----------------------------------------------------------------------------
 var twitter = new ntwitter(require('./credentials.js').credentials);
 
+// Search terms and official account IDs, broken down by brand
+var tr = {
+  terms: ['techrepublic', 'tech republic', 't.co'],
+  accountId: '6486602'
+};
+var sp = {
+  terms: ['smartplanet', 'smart planet', 'smrt.io'],
+  accountId: '34731203'
+};
+var zd = {
+  terms: ['zdnet', 'zd net', 'z d net', 'zd.net'],
+  accountId: '3819701'
+};
+var tpr = {
+  terms: ['techproresearch', 'tech pro research'],
+  accountId: '1415819869'
+};
+// TODO: Automate
+var officialAccounts = '6486602,34731203,3819701,1415819869';
+
+// Filters to use for Twitter stream
 var filters = {
-  'track': ['cbs', 'cbs interactive', 'cnet', 'techrepublic', 'smartplanet', 'tech pro research', 'zdnet']
+  // Terms to search for
+  'track': tr.terms.concat(sp.terms).concat(zd.terms).concat(tpr.terms),
+  // Account IDs to search for
+  'follow': officialAccounts
+}
+
+function isBrandMatch(brand, tweet) {
+  if (tweet.user.id == brand.accountId) {
+    return true;
+  }
+
+  var regex = new RegExp('(\\b' + brand.terms.join('\\b)|(\\b') + '\\b)', 'i');
+  console.log(regex);
+
+  return regex.test(tweet.text);
 }
 
 twitter.stream('statuses/filter', filters, function(stream) {
   stream.on('data', function(tweet) {
     console.log('Received tweet ' + tweet.id);
     io.sockets.emit('tweet', tweet);
+
+    // Send messages based on brand
+    if (isBrandMatch(tr, tweet)) {
+      io.sockets.emit('tr', tweet);
+    }
+    if (isBrandMatch(sp, tweet)) {
+      io.sockets.emit('sp', tweet);
+    }
+    if (isBrandMatch(zd, tweet)) {
+      io.sockets.emit('zd', tweet);
+    }
+    if (isBrandMatch(tpr, tweet)) {
+      io.sockets.emit('tpr', tweet);
+    }
   });
 });
 
