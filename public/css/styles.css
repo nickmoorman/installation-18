@@ -1,19 +1,65 @@
 /* Installtion 18 */
-@import url(animations.css);
-body { background:url(../img/bg-body.png) repeat; }
-header { padding:10px; background:url(../img/bg-header.jpg)repeat #383838; color:#fff; text-shadow: 0 2px 0 #000; }
 
-.logo { color:#D93F40; font-weight:800; font-size: 2em; margin:0; font-family: inherit; }
-.tagline { margin:0 0 12px 0; font-size:0.9em; font-family: inherit; }
-.section-header { color:#008cba; font-weight:800; font-size: 1.5em; margin:0; font-family: inherit; }
-.count-number { background:#D93F40; border-radius:50%; padding: 3px 5px; margin-left: 5px; }
-.whodidit { margin:12px 0; color:#ddd; font-style:italic; font-size:.8em; }
+@import url(animations.css);
+
+body { background:url(../img/bg-body.png) repeat; }
+
+header {
+	padding:10px;
+	background:url(../img/bg-header.jpg)repeat #383838;
+	color:#fff;
+	text-shadow: 0 2px 0 #000;
+}
+
+.logo {
+	color:#D93F40;
+	font-weight:800;
+	font-size: 2em;
+	margin:0;
+	font-family: inherit;
+}
+
+.tagline {
+	margin:0 0 12px 0;
+	font-size:0.9em;
+	font-family: inherit;
+}
+
+.section-header {
+	color:#008cba;
+	font-weight:800;
+	font-size: 1.5em;
+	margin:0 0 6px 0;
+	font-family: inherit;
+}
+
+.count-number {
+	font-size: 0.8em;
+	background:#D93F40;
+	border-radius:50%;
+	padding: 3px 5px;
+	margin-left: 5px;
+}
+
+.whodidit {
+	margin:12px 0;
+	color:#ddd;
+	font-style:italic;
+	font-size:.8em;
+}
+
 .scroll {
 	height:600px;
 	overflow: auto;
 }
+
 /* Tweet */
-.tweet { list-style-type: none; margin:0; padding:0; font-size: .7em; }
+.tweet {
+	list-style-type: none;
+	margin:0; padding:0;
+	font-size: .7em;
+}
+
 .tweet li {
 	background:rgba(250,250,250,0.8);
   	-moz-box-shadow:    0 2px 1px 0 rgba(0,0,0,0.16);
@@ -23,13 +69,23 @@ header { padding:10px; background:url(../img/bg-header.jpg)repeat #383838; color
   	width:95%;
   	overflow: auto;
 }
-.tweet span { margin-right:6px; color:#b4b4b4;}
-.tweet .avatar { float:left; margin:0 4px 0 0; padding:6px; width:75px; height:75px; }
-.tweet .name {}
-.tweet .date {}
-.tweet .location {}
-.tweet .text { font-size: 1.2em; margin:0 0 6px 0; }
 
+.tweet span {
+	margin-right:6px;
+	color:#b4b4b4;
+}
+.tweet .avatar {
+	float:left;
+	margin:0 4px 0 0;
+	padding:6px;
+	width:75px;
+	height:75px;
+}
+
+.tweet .text {
+	font-size: 1.2em;
+	margin:0 0 6px 0;
+}
 
 
 /* CSS Tabs */
