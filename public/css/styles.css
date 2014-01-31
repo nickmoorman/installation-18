@@ -771,7 +771,7 @@ input[type="checkbox"] + label, input[type="radio"] + label { margin-left:0; mar
   width: 200px;
 }
 .piece::after {
-  background-color: #1b7764;
+  background-color: #355d70;
   border-radius: 0px 100px 100px 0px;
   content: "";
   display: block;
