@@ -782,62 +782,76 @@ input[type="checkbox"] + label, input[type="radio"] + label { margin-left:0; mar
   width: 100px;
 }
 
-.piece.legend-item-1::after {
-  background-color: #001924;
+.piece.legend-item-1::after, .legend-item-1 {
+  background-color: #ba0202;
+  color:#fff;
 }
 
-.piece.legend-item-2::after {
-  background-color: #002b3f;
+.piece.legend-item-2::after, .legend-item-2 {
+  background-color: #ba7702;
+  color:#fff;
 }
 
-.piece.legend-item-3::after {
-  background-color: #003a55;
+.piece.legend-item-3::after, .legend-item-3 {
+  background-color: #a7ba02;
+  color:#fff;
 }
 
-.piece.legend-item-4::after {
-  background-color: #024768;
+.piece.legend-item-4::after, .legend-item-4 {
+  background-color: #3aba02;
+  color:#fff;
 }
 
-.piece.legend-item-5::after {
-  background-color: #025177;
+.piece.legend-item-5::after, .legend-item-5 {
+  background-color: #018f41;
+  color:#fff;
 }
 
-.piece.legend-item-6::after {
-  background-color: #025e8a;
+.piece.legend-item-6::after, .legend-item-6 {
+  background-color: #01878f;
+  color:#fff;
 }
 
-.piece.legend-item-7::after {
-  background-color: #026c9e;
+.piece.legend-item-7::after, .legend-item-7 {
+  background-color: #012d8f;
+  color:#fff;
 }
 
-.piece.legend-item-8::after {
-  background-color: #27B2B5;
+.piece.legend-item-8::after, .legend-item-8 {
+  background-color: #37018f;
+  color:#fff;
 }
 
-.piece.legend-item-9::after {
-  background-color: #0378af;
+.piece.legend-item-9::after, .legend-item-9 {
+  background-color: #87018f;
+  color:#fff;
 }
 
-.piece.legend-item-10::after {
-  background-color: #0181be;
+.piece.legend-item-10::after, .legend-item-10 {
+  background-color: #d00159;
+  color:#fff;
 }
 
-.piece.legend-item-11::after {
-  background-color: #028cce;
+.piece.legend-item-11::after, .legend-item-11 {
+  background-color: #884963;
 }
 
-.piece.legend-item-12::after {
-  background-color: #0197df;
+.piece.legend-item-12::after, .legend-item-12 {
+  background-color: #897e82;
+  color:#fff;
 }
 
-.piece.legend-item-13::after {
-  background-color: #02a5f3;
+.piece.legend-item-13::after, .legend-item-13 {
+  background-color: #507c9a;
+  color:#fff;
 }
 
-.piece.legend-item-14::after {
-  background-color: #28b7fb;
+.piece.legend-item-14::after, .legend-item-14 {
+  background-color: #426842;
+  color:#fff;
 }
 
-.piece.legend-item-15::after {
-  background-color: #71d0fd;
+.piece.legend-item-15::after, .legend-item-15 {
+  background-color: #513c21;
+  color:#fff;
 }
