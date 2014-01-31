@@ -6,7 +6,7 @@ body { background:url(../img/bg-body.png) repeat; }
 
 header {
 	padding:10px;
-	background:url(../img/bg-header.jpg)repeat #383838;
+	background:url(../img/bg-topo.png)repeat #383838;
 	color:#fff;
 	text-shadow: 0 2px 0 #000;
 }
@@ -14,9 +14,10 @@ header {
 .logo {
 	color:#D93F40;
 	font-weight:800;
-	font-size: 2em;
+	font-size: 3.5em;
 	margin:0;
 	font-family: inherit;
+	font-weight: 300;
 }
 
 .tagline {
