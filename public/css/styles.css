@@ -1,11 +1,11 @@
 /* Installtion 18 */
-@import url(animate.css);
+@import url(animations.css);
 body { background:url(../img/bg-body.png) repeat; }
 header { padding:10px; background:url(../img/bg-header.jpg)repeat #383838; color:#fff; text-shadow: 0 2px 0 #000; }
 
-.logo { font-family: 'Stardos Stencil', cursive; color:#D93F40; font-weight:800; font-size: 2em; margin:0; }
-.tagline { margin:0 0 12px 0; font-size:0.9em; }
-.section-header { font-family: 'Stardos Stencil', cursive; color:#d42b0f; font-weight:800; font-size: 1.5em; margin:0; }
+.logo { color:#D93F40; font-weight:800; font-size: 2em; margin:0; font-family: inherit; }
+.tagline { margin:0 0 12px 0; font-size:0.9em; font-family: inherit; }
+.section-header { color:#008cba; font-weight:800; font-size: 1.5em; margin:0; font-family: inherit; }
 .count-number { background:#D93F40; border-radius:50%; padding: 3px 5px; margin-left: 5px; }
 .whodidit { margin:12px 0; color:#ddd; font-style:italic; font-size:.8em; }
 .scroll {
