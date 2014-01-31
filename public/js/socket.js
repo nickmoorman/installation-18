@@ -36,7 +36,6 @@ window.Socket = {
             li.html(tpl);
 
             if(allList.find('[data-id="' + data.id + '"]').length == 0){
-                console.log("appending li to all list: ", li);
                 allList.prepend(li.clone().addClass('slideDown'));
             }
 
@@ -53,7 +52,6 @@ window.Socket = {
             li.html(tpl);
 
             if(allList.find('[data-id="' + data.id + '"]').length == 0){
-                console.log("appending li to all list: ", li);
                 allList.prepend(li.clone().addClass('slideDown'));
             }
 
@@ -70,7 +68,6 @@ window.Socket = {
             li.html(tpl);
 
             if(allList.find('[data-id="' + data.id + '"]').length == 0){
-                console.log("appending li to all list: ", li);
                 allList.prepend(li.clone().addClass('slideDown'));
             }
 
@@ -80,6 +77,15 @@ window.Socket = {
         App.socket.on('metrics', function(data){
             console.log("metrics", data);
             LangPie.drawChart(data.tweetsPerLanguage);
+
+            LangPie.trGauge.update((data.totalTweets/data.tweetsPerBrand.tr));
+            LangPie.spGauge.update((data.totalTweets/data.tweetsPerBrand.sp));
+            LangPie.zdGauge.update((data.totalTweets/data.tweetsPerBrand.zd));
+
+            $('#all .total-tweets-number').text(data.totalTweets);
+            $('#tr .total-tweets-number').text(data.tweetsPerBrand.tr);
+            $('#sp .total-tweets-number').text(data.tweetsPerBrand.sp);
+            $('#zd .total-tweets-number').text(data.tweetsPerBrand.zd);
         });
     }
 }

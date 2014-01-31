@@ -41,7 +41,7 @@ header {
 	margin-left: 5px;
 }
 
-.total-tweets { text-align: center; }
+.total-tweets, .chart { text-align: center; }
 .total-tweets-number {
 	font-size: 9em;
 	color:#383838;
@@ -627,7 +627,7 @@ p.text a:hover { color:#ba2829; text-decoration: underline; }
 
   to {
     opacity: 1; } }
-input[type="checkbox"] + label, input[type="radio"] + label { margin-left:0; margin-right:0; } 
+input[type="checkbox"] + label, input[type="radio"] + label { margin-left:0; margin-right:0; }
 .tabs-wrapper {
   margin:20px 0; }
   .tabs-wrapper input[type=radio] {
@@ -646,18 +646,18 @@ input[type="checkbox"] + label, input[type="radio"] + label { margin-left:0; mar
       border-bottom: none; }
     .tabs-wrapper label:hover {
       background: #D93F40;
-    
+
     /*@include transform (translate(0,-0.2em));*/ }
     @media screen and (max-width: 1600px) {
       .tabs-wrapper label {
         width: 15%; }
     }
-    
+
     @media screen and (max-width: 900px) {
       .tabs-wrapper label {
         width: 20%; }
     }
-    
+
     @media screen and (max-width: 600px) {
       .tabs-wrapper label {
         width: 100%;
@@ -665,7 +665,7 @@ input[type="checkbox"] + label, input[type="radio"] + label { margin-left:0; mar
         border-bottom: 2px solid #4d4c47;
         }
     }
-  	
+
   	@media screen and (max-width: 600px) {
     .tabs-wrapper {
       margin:0; }

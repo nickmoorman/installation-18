@@ -3,8 +3,28 @@ window.LangPie = {
     chart : $('#pie'),
     chartKey : $('#pie-key'),
 
+    trGauge: false,
+    spGauge: false,
+    zdGauge: false,
+
     initialize : function() {
         //setup here
+        elTrGauge = $('#all .chart-tr')[0];
+        elSpGauge = $('#all .chart-sp')[0];
+        elZdGauge = $('#all .chart-zd')[0];
+
+        LangPie.trGauge = new EasyPieChart(elTrGauge, {
+            // your options goes here
+        });
+
+        LangPie.spGauge = new EasyPieChart(elSpGauge, {
+            // your options goes here
+        });
+
+        LangPie.zdGauge = new EasyPieChart(elZdGauge, {
+            // your options goes here
+        });
+
     },
 
     calcAngle : function(percentage) {
@@ -20,7 +40,7 @@ window.LangPie = {
         totalValue = 0;
         pieceCount =  _.size(data);
 
-        console.log("pieceCount: ",pieceCount);
+        //console.log("pieceCount: ",pieceCount);
 
         if (pieceCount > 1) {
 
@@ -37,12 +57,12 @@ window.LangPie = {
                 //console.log("piece percentage:", percentage);
 
                 deg = LangPie.calcAngle(percentage);
+                //deg = 360 - deg;
                 //console.log("Pie deg: ", deg);
 
                 el = '<div class="piece legend-item-' + i +'" style="-webkit-transform: rotate(' + deg +'deg); -moz-transform: rotate(' + deg + 'deg);"></div>';
                 chart.append(el);
                 //Add chart colors
-                console.log("language: ", value);
                 el = '<li class="legend-item-' + i +'-lang">' + key + ' - ' + percentage.toFixed(2) + '%</li>';
                 chartKey.append(el);
                 i++;

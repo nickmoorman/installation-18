@@ -7,7 +7,9 @@ head.js([
     {"socket" : "js/socket.js"},
     {"utils" : "js/utils.js"},
     {"socket.io" : "/socket.io/socket.io.js"},
-    {"langPie" : "js/langPie.js"}
+    {"langPie" : "js/langPie.js"},
+    {"canvas" : "js/libs/canvas.js"},
+    {"easyPie" : "js/libs/easypiechart.js"}
 ]);
 
 head.ready(function() {
