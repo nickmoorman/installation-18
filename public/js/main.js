@@ -20,7 +20,7 @@ head.ready(function() {
     console.log("Backbone: ", Backbone);
     console.log("App: ", App);
 
-    App.socket = io.connect('http://127.0.0.1:3000');
+    App.socket = io.connect('http://localhost:3000');
 
     App.initialize();
     Socket.initialize();
