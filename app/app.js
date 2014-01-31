@@ -17,7 +17,14 @@ var server = http.createServer(app);
 // ----------------------------------------------------------------------------
 // --no-socks runtime option to skip socket messages for server-only debug
 optimist.default('nosocks', false);
+optimist.default('debug', false);
 var argv = optimist.argv;
+
+function debug(message) {
+  if (argv.debug) {
+    console.log(message);
+  }
+}
 
 // ----------------------------------------------------------------------------
 // Express app setup
@@ -108,13 +115,29 @@ var filters = {
 };
 
 // Various metrics for accumulated data
-var metrics = {
-  totalTweets: 0,
-  tweetsPerBrand: {},
-  tweetsPerLanguage: {
-    'unknown': 0
-  }
+function Metric() {
+  this._data = {};
 };
+Metric.prototype.add = function(key) {
+  if (!(key in this._data)) {
+    this._data[key] = 0;
+  }
+  this._data[key] += 1;
+}
+function Metrics() {
+  this.totalTweets = 0;
+  this.tweetsPerBrand = new Metric();
+  this.tweetsPerLanguage = new Metric();
+};
+Metrics.prototype.clean = function() {
+  return {
+    totalTweets: this.totalTweets,
+    tweetsPerBrand: this.tweetsPerBrand._data,
+    tweetsPerLanguage: this.tweetsPerLanguage._data
+  }
+}
+
+var metrics = new Metrics();
 
 twitter.stream('statuses/filter', filters, function(stream) {
   stream.on('data', function(tweet) {
@@ -129,26 +152,15 @@ twitter.stream('statuses/filter', filters, function(stream) {
       if (tweet.user.id == brand.accountId || regex.test(tweet.text)) {
         socketSend(brand.socket, tweet);
 
-        // Update brand metrics
-        if (metrics.tweetsPerBrand[brand.socket] == undefined) {
-          metrics.tweetsPerBrand[brand.socket] = 0;
-        }
-        metrics.tweetsPerBrand[brand.socket] += 1;
+        metrics.tweetsPerBrand.add(brand.socket);
       }
     });
 
-    // Update language metrics
-    if (tweet.lang) {
-      if (metrics.tweetsPerLanguage[tweet.lang] == undefined) {
-        metrics.tweetsPerLanguage[tweet.lang] = 0;
-      }
-      metrics.tweetsPerLanguage[tweet.lang] += 1;
-    } else {
-      metrics.tweetsPerLanguage['unknown'] += 1;
-    }
+    metrics.tweetsPerLanguage.add(tweet.lang);
 
     // Send updated metrics
-    socketSend('metrics', metrics);
+    socketSend('metrics', metrics.clean());
+    debug(metrics.clean());
   });
 });
 
