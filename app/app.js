@@ -16,24 +16,6 @@ var server = http.createServer(app);
 var config = require('../public/config.js');
 
 // ----------------------------------------------------------------------------
-// Logging
-// ----------------------------------------------------------------------------
-
-var fs = require('fs');
-var log_file = fs.createWriteStream(__dirname + '/stdout.log', {flags : 'w'});
-var log_stdout = process.stdout;
-
-console.log = function(d) { //
-  log_file.write(d + '\n');
-  log_stdout.write(d + '\n');
-};
-
-process.on("uncaughtException", function(err) {
-    console.log(err.stack);
-});
-
-
-// ----------------------------------------------------------------------------
 // Optimist setup
 // ----------------------------------------------------------------------------
 // --no-socks runtime option to skip socket messages for server-only debug
