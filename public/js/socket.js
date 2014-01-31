@@ -76,16 +76,26 @@ window.Socket = {
 
         App.socket.on('metrics', function(data){
             console.log("metrics", data);
-            LangPie.drawChart(data.tweetsPerLanguage);
 
-            LangPie.trGauge.update((data.totalTweets/data.tweetsPerBrand.tr));
-            LangPie.spGauge.update((data.totalTweets/data.tweetsPerBrand.sp));
-            LangPie.zdGauge.update((data.totalTweets/data.tweetsPerBrand.zd));
+            // LangPie.drawChart(data.tweetsPerLanguage);
+            // LangPie.trGauge.update((data.totalTweets/data.tweetsPerBrand.tr));
+            // LangPie.spGauge.update((data.totalTweets/data.tweetsPerBrand.sp));
+            // LangPie.zdGauge.update((data.totalTweets/data.tweetsPerBrand.zd));
 
-            $('#all .total-tweets-number').text(data.totalTweets);
-            $('#tr .total-tweets-number').text(data.tweetsPerBrand.tr);
-            $('#sp .total-tweets-number').text(data.tweetsPerBrand.sp);
-            $('#zd .total-tweets-number').text(data.tweetsPerBrand.zd);
+            Charts.updateLanguages(data.tweetsPerLanguage);
+
+            if(data.totalTweets){
+                $('#all .total-tweets-number').text(data.totalTweets);
+            }
+            if(data.tweetsPerBrand.tr){
+                $('#tr .total-tweets-number').text(data.tweetsPerBrand.tr);
+            }
+            if(data.tweetsPerBrand.sp){
+                $('#sp .total-tweets-number').text(data.tweetsPerBrand.sp);
+            }
+            if(data.tweetsPerBrand.zd){
+                $('#zd .total-tweets-number').text(data.tweetsPerBrand.zd);
+            }
         });
     }
 }

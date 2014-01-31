@@ -7,9 +7,9 @@ head.js([
     {"socket" : "js/socket.js"},
     {"utils" : "js/utils.js"},
     {"socket.io" : "/socket.io/socket.io.js"},
-    {"langPie" : "js/langPie.js"},
     {"canvas" : "js/libs/canvas.js"},
-    {"easyPie" : "js/libs/easypiechart.js"}
+    {"chartJs" : "js/libs/Chart.js"},
+    {"charts" : "js/charts.js"}
 ]);
 
 head.ready(function() {
@@ -25,6 +25,6 @@ head.ready(function() {
     App.initialize();
     Socket.initialize();
 
-    LangPie.initialize();
+    Charts.initialize();
 
 });
