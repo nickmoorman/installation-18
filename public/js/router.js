@@ -14,38 +14,63 @@ App.router.brands = Backbone.Router.extend({
         // App.userCollection.create(new App.model.user({uid: 2, name:'Steve', lastName: 'Harris'}));
         // App.userCollection.create(new App.model.user({uid: 3, name:'Alejandro', lastName: 'Blanco'}));
 
-        allList = $('#all').find('ul');
-        trList = $('#tr').find('ul');
-        spList = $('#sp').find('ul');
-        zdList = $('#zd').find('ul');
+        var allList = $('#all').find('ul'),
+            trList = $('#tr').find('ul'),
+            spList = $('#sp').find('ul'),
+            zdList = $('#zd').find('ul');
+
+        // Grab the HTML out of our template tag and pre-compile it.
+        var tplMarkup = $("script.tweet").html();
 
         App.socket.on('all', function(data){
             console.log(data);
-            allList.append('<li data-id="' + data.id + '">' + data.user.name + " " + data.text +'</li>');
+            allList.prepend('<li data-id="' + data.id + '">' + data.user.name + " " + data.text +'</li>');
         });
 
         App.socket.on('tr', function(data){
             console.log(data);
+
+            tpl = _.template(tplMarkup, { tweet : data });
+            li = $('<li data-id="' + data.id + '"></li>');
+            li.html(tpl);
+
             if(allList.find('[data-id="' + data.id + '"]').length == 0){
-                allList.append('<li data-id="' + data.id + '">' + data.user.name + " " + data.text +'</li>');
+                console.log("appending li to all list: ", li);
+                allList.prepend(li.clone());
             }
-            trList.append('<li data-id="' + data.id + '">' + data.user.name + " " + data.text +'</li>');
+
+            trList.prepend(li);
         });
 
         App.socket.on('sp', function(data){
             console.log(data);
+
+            tpl = _.template(tplMarkup, { tweet : data });
+            li = $('<li data-id="' + data.id + '"></li>');
+            li.html(tpl);
+
             if(allList.find('[data-id="' + data.id + '"]').length == 0){
-                allList.append('<li data-id="' + data.id + '">' + data.user.name + " " + data.text +'</li>');
+                console.log("appending li to all list: ", li);
+                allList.prepend(li.clone());
             }
-            spList.append('<li data-id="' + data.id + '">' + data.user.name + " " + data.text +'</li>');
+
+            spList.prepend(li);
         });
 
         App.socket.on('zd', function(data){
             console.log(data);
+
+            tpl = _.template(tplMarkup, { tweet : data });
+            li = $('<li data-id="' + data.id + '"></li>');
+            li.html(tpl);
+
             if(allList.find('[data-id="' + data.id + '"]').length == 0){
-                allList.append('<li data-id="' + data.id + '">' + data.user.name + " " + data.text +'</li>');
+                console.log("appending li to all list: ", li);
+                allList.prepend(li.clone());
             }
-            zdList.append('<li data-id="' + data.id + '">' + data.user.name + " " + data.text +'</li>');
+
+            zdList.prepend(li);
+
         });
 
         App.socket.on('metrics', function(data){

@@ -55,97 +55,7 @@
 					<div id="all" class="tab-body">
 						<!-- Inject tweets here -->
 						<div class="large-6 columns scroll">
-							<ul class="tweet">
-								<li>
-									<div>
-										<img src="https://pbs.twimg.com/profile_images/2345996634/b6h6rix864m1ew42k5br_bigger.jpeg" class="avatar"></img>
-										<span class="name">@SMP4488</span>
-										<span class="date">Fri Jan 31 01:12:19</span>
-										<span class="location">Louisville, KY</span>
-										<p class="text">Hack Day!!!! Let the games begin.</p>
-									</div>
-								</li>
-
-								<li>
-									<div>
-										<img src="https://pbs.twimg.com/profile_images/1266931259/eightbit-8fc82f09-01b9-49ff-8ef2-8f5b4f3809ed_bigger.png" class="avatar"></img>
-										<span class="name">@jerang</span>
-										<span class="date">Fri Jan 31 01:12:19</span>
-										<span class="location">Cave City, CA</span>
-										<p class="text">I sure do miss all my CBSi brothers in Louisville</p>
-									</div>
-								</li>
-
-								<li>
-									<div>
-										<img src="https://pbs.twimg.com/profile_images/211237193/n500549485_1560937_5890202_bigger.jpg" class="avatar"></img>
-										<span class="name">@paultravers90</span>
-										<span class="date">Fri Jan 31 01:12:19</span>
-										<span class="location">Louisville, KY</span>
-										<p class="text">Macklemore in 50!!! (@ What Stage at @Bonnaroo Music & Arts Festival w/ 13 others) http://4sq.com/11RXTQm </p>
-									</div>
-								</li>
-
-								<li>
-									<div>
-										<img src="https://pbs.twimg.com/profile_images/2717451220/f3603d7ddc7d30911af1303706561dcc_bigger.jpeg" class="avatar"></img>
-										<span class="name">@bigboogers</span>
-										<span class="date">Fri Jan 31 01:12:19</span>
-										<span class="location">Louisville, KY</span>
-										<p class="text">I decline the title of Iron Cook and accept the lesser title of Zinc Saucier, which I just made up</p>
-									</div>
-								</li>
-
-								<li>
-									<div>
-										<img src="https://pbs.twimg.com/profile_images/416099492648075264/1Dv6Y8W4_bigger.jpeg" class="avatar"></img>
-										<span class="name">@saucychicken</span>
-										<span class="date">Fri Jan 31 01:12:19</span>
-										<span class="location">Louisville, KY</span>
-										<p class="text">Uhh… also, comes with double prize money. So, how 'bout them Knicks? </p>
-									</div>
-								</li>
-
-								<li>
-									<div>
-										<img src="https://pbs.twimg.com/profile_images/2668936560/e556169271e5f9267e28d0ac66dea3dd_bigger.png" class="avatar"></img>
-										<span class="name">@godsofspinach</span>
-										<span class="date">Fri Jan 31 01:12:19</span>
-										<span class="location">Louisville, KY</span>
-										<p class="text">Soon enough. Look, everyone wants to be like Germany, but do we really have the pure strength of 'will'?</p>
-									</div>
-								</li>
-
-								<li>
-									<div>
-										<img src="https://pbs.twimg.com/profile_images/417054296786477058/ZHyrZMz6_bigger.png" class="avatar"></img>
-										<span class="name">@exocytosispate</span>
-										<span class="date">Fri Jan 31 01:12:19</span>
-										<span class="location">Louisville, KY</span>
-										<p class="text">Macklemore in 50!!! (@ What Stage at @Bonnaroo Music & Arts Festival w/ 13 others) http://4sq.com/11RXTQm </p>
-									</div>
-								</li>
-
-								<li>
-									<div>
-										<img src="https://pbs.twimg.com/profile_images/378800000694090085/e95cd8e928c8c7192139b1e27f0b4538_bigger.jpeg" class="avatar"></img>
-										<span class="name">@bloodfart</span>
-										<span class="date">Fri Jan 31 01:12:19</span>
-										<span class="location">Louisville, KY</span>
-										<p class="text">Macklemore in 50!!! (@ What Stage at @Bonnaroo Music & Arts Festival w/ 13 others) http://4sq.com/11RXTQm </p>
-									</div>
-								</li>
-
-								<li>
-									<div>
-										<img src="https://pbs.twimg.com/profile_images/1580293013/Troy_LaDuke_bigger.jpg" class="avatar"></img>
-										<span class="name">@itchybutthole</span>
-										<span class="date">Fri Jan 31 01:12:19</span>
-										<span class="location">Louisville, KY</span>
-										<p class="text">Goodbye, cruel world. Goodbye, cruel lamp. Goodbye, cruel velvet drapes, lined with what would appear to be some sort of cruel muslin.</p>
-									</div>
-								</li>
-							</ul>
+							<ul class="tweet"></ul>
 						</div>
 
 						<!-- Inject metrics here -->
@@ -198,15 +108,13 @@
 		<!-- BEGIN: Underscore Template Definition. -->
 		<script type="text/template" class="tweet">
 
-			<li>
-				<div>
-					<img src="<%= tweet.user.profile_image_url %>" class="avatar"></img>
-					<span class="name">@<%= tweet.user.screen_name %></span>
-					<span class="date"><%= tweet.created_at %></span>
-					<span class="location"><%= tweet.user.location %></span>
-					<p class="text"><%= tweet.text %></p>
-				</div>
-			</li>
+			<div>
+				<img src="<%= tweet.user.profile_image_url %>" class="avatar"></img>
+				<span class="name">@<%= tweet.user.screen_name %></span>
+				<span class="date"><%= tweet.created_at %></span>
+				<span class="location"><%= tweet.user.location %></span>
+				<p class="text"><%= tweet.text %></p>
+			</div>
 
 		</script>
 		<!-- END: Underscore Template Definition. -->
