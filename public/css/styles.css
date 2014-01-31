@@ -782,76 +782,76 @@ input[type="checkbox"] + label, input[type="radio"] + label { margin-left:0; mar
   width: 100px;
 }
 
-.piece.legend-item-1::after, .legend-item-1 {
+.piece.legend-item-1::after, .legend-item-1-lang {
   background-color: #ba0202;
   color:#fff;
 }
 
-.piece.legend-item-2::after, .legend-item-2 {
+.piece.legend-item-2::after, .legend-item-2-lang {
   background-color: #ba7702;
   color:#fff;
 }
 
-.piece.legend-item-3::after, .legend-item-3 {
+.piece.legend-item-3::after, .legend-item-3-lang {
   background-color: #a7ba02;
   color:#fff;
 }
 
-.piece.legend-item-4::after, .legend-item-4 {
+.piece.legend-item-4::after, .legend-item-4-lang {
   background-color: #3aba02;
   color:#fff;
 }
 
-.piece.legend-item-5::after, .legend-item-5 {
+.piece.legend-item-5::after, .legend-item-5-lang {
   background-color: #018f41;
   color:#fff;
 }
 
-.piece.legend-item-6::after, .legend-item-6 {
+.piece.legend-item-6::after, .legend-item-6-lang {
   background-color: #01878f;
   color:#fff;
 }
 
-.piece.legend-item-7::after, .legend-item-7 {
+.piece.legend-item-7::after, .legend-item-7-lang {
   background-color: #012d8f;
   color:#fff;
 }
 
-.piece.legend-item-8::after, .legend-item-8 {
+.piece.legend-item-8::after, .legend-item-8-lang {
   background-color: #37018f;
   color:#fff;
 }
 
-.piece.legend-item-9::after, .legend-item-9 {
+.piece.legend-item-9::after, .legend-item-9-lang {
   background-color: #87018f;
   color:#fff;
 }
 
-.piece.legend-item-10::after, .legend-item-10 {
+.piece.legend-item-10::after, .legend-item-10-lang {
   background-color: #d00159;
   color:#fff;
 }
 
-.piece.legend-item-11::after, .legend-item-11 {
+.piece.legend-item-11::after, .legend-item-11-lang {
   background-color: #884963;
 }
 
-.piece.legend-item-12::after, .legend-item-12 {
+.piece.legend-item-12::after, .legend-item-12-lang {
   background-color: #897e82;
   color:#fff;
 }
 
-.piece.legend-item-13::after, .legend-item-13 {
+.piece.legend-item-13::after, .legend-item-13-lang {
   background-color: #507c9a;
   color:#fff;
 }
 
-.piece.legend-item-14::after, .legend-item-14 {
+.piece.legend-item-14::after, .legend-item-14-lang {
   background-color: #426842;
   color:#fff;
 }
 
-.piece.legend-item-15::after, .legend-item-15 {
+.piece.legend-item-15::after, .legend-item-15-lang {
   background-color: #513c21;
   color:#fff;
 }
