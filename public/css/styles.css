@@ -66,7 +66,11 @@ header {
 	overflow: auto;
 }
 
-/* Tweet */
+.scroll > div:nth-child(2) { text-align: center; }
+
+/* Tweet
+-----------------------------------------
+*/
 .tweet {
 	list-style-type: none;
 	margin:0; padding:0;
@@ -100,6 +104,24 @@ header {
 	margin:0 10px 10px 77px;
 }
 
+/* Language charts/key
+-----------------------------------------
+*/
+#languageChart { margin:12px auto; }
+#languageKey {
+  list-style-type: none;
+  margin:0;
+  padding:0;
+}
+
+#languageKey li {
+  text-align: center;
+  color:#fff;
+  font-weight:400;
+  padding:6px;
+  margin-bottom:6px;
+}
+
 p.text a { color:#D93F40; }
 p.text a:hover { color:#ba2829; text-decoration: underline; }
 
@@ -108,15 +130,13 @@ p.text a:hover { color:#ba2829; text-decoration: underline; }
 */
 @media only screen and (min-width: 40.063em) {
 	.scroll {
-		height:100%;
-		overflow: auto;
+
 	}
 }
 
 @media only screen and (max-width: 40em) {
 	.scroll {
-		height:100%;
-		overflow: auto;
+
 	}
 }
 
