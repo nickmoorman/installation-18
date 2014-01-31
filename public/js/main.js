@@ -20,5 +20,6 @@ head.ready(function() {
     App.socket = io.connect('http://localhost:3000');
 
     App.initialize();
+    Socket.initialize();
 
 });
