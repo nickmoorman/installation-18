@@ -25,6 +25,7 @@ SportProcessor.prototype.run = function(twitter) {
 
   // Various metrics for accumulated data
   var metrics = new Metrics('sports');
+  this.util.sendConnectMetrics(metrics);
 
   var learner = new Learner();
   learner.train();

@@ -29,6 +29,7 @@ BrandProcessor.prototype.run = function(twitter) {
 
   // Various metrics for accumulated data
   var metrics = new Metrics();
+  this.util.sendConnectMetrics(metrics);
 
   var self = this;
 

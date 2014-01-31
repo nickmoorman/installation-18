@@ -16,3 +16,11 @@ Util.prototype.debug = function(message) {
     console.log(message);
   }
 };
+
+Util.prototype.sendConnectMetrics = function(metrics) {
+  if (!this.argv.nosocks) {
+    this.io.sockets.on('connection', function(socket) {
+      socket.emit('metrics', metrics);
+    });
+  }
+}
