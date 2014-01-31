@@ -5,6 +5,7 @@ head.js([
 	{"app" : "js/app.js"},
 	{"router" : "js/router.js"},
     {"socket" : "js/socket.js"},
+    {"utils" : "js/utils.js"},
     {"socket.io" : "/socket.io/socket.io.js"}
 ]);
 

@@ -30,6 +30,8 @@ App.router.brands = Backbone.Router.extend({
         App.socket.on('tr', function(data){
             console.log(data);
 
+            data.text = App.util.url.replaceURLWithHTMLLinks(data.text);
+
             tpl = _.template(tplMarkup, { tweet : data });
             li = $('<li data-id="' + data.id + '"></li>');
             li.html(tpl);
@@ -45,6 +47,8 @@ App.router.brands = Backbone.Router.extend({
         App.socket.on('sp', function(data){
             console.log(data);
 
+            data.text = App.util.url.replaceURLWithHTMLLinks(data.text);
+
             tpl = _.template(tplMarkup, { tweet : data });
             li = $('<li data-id="' + data.id + '"></li>');
             li.html(tpl);
@@ -59,6 +63,8 @@ App.router.brands = Backbone.Router.extend({
 
         App.socket.on('zd', function(data){
             console.log(data);
+
+            data.text = App.util.url.replaceURLWithHTMLLinks(data.text);
 
             tpl = _.template(tplMarkup, { tweet : data });
             li = $('<li data-id="' + data.id + '"></li>');
