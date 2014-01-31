@@ -27,8 +27,7 @@ window.Charts = {
 			i++;
 		});
 		console.log(pieData);
-		new Chart(elLanguages).Pie(pieData,{});
-
-
+		//new Chart(elLanguages).Pie(pieData,{});
+		new Chart(elLanguages).PolarArea(pieData,{});
 	}
 }

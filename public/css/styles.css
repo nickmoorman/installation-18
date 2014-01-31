@@ -673,6 +673,11 @@ p.text a:hover { color:#ba2829; text-decoration: underline; }
   to {
     opacity: 1; } }
 input[type="checkbox"] + label, input[type="radio"] + label { margin-left:0; margin-right:0; }
+
+.tabs > div {
+  display: inline;
+}
+
 .tabs-wrapper {
   margin:20px 0; }
   .tabs-wrapper input[type=radio] {
