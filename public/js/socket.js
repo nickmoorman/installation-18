@@ -13,65 +13,80 @@ window.Socket = {
     initialize: function() {
         console.log('window.Socket Initialized');
 
-        var allList = $('#all').find('ul.tweet'),
-            trList = $('#tr').find('ul.tweet'),
-            spList = $('#sp').find('ul.tweet'),
-            zdList = $('#zd').find('ul.tweet');
+        // TODO: Figure out how to load the damn config file...
+        var brands = [
+            {
+                name: 'TechRepublic',
+                shortname: 'TR',
+                socket: 'tr',
+                terms: ['techrepublic', 'tech republic', 'tek.io'],
+                accountId: '6486602'
+            },
+            {
+                name: 'SmartPlanet',
+                shortname: 'SP',
+                socket: 'sp',
+                terms: ['smartplanet', 'smart planet', 'smrt.io'],
+                accountId: '34731203'
+            },
+            {
+                name: 'ZDNet',
+                shortname: 'ZD',
+                socket: 'zd',
+                terms: ['zdnet', 'zd net', 'z d net', 'zd.net'],
+                accountId: '3819701'
+            },
+            {
+                name: 'Tech Pro Research',
+                shortname: 'TPR',
+                socket: 'tpr',
+                terms: ['techproresearch', 'tech pro research'],
+                accountId: '1415819869'
+            }
+        ];
+
+        var allList = $('#all').find('ul.tweet');
 
         // Grab the HTML out of our template tag and pre-compile it.
-        var tplMarkup = $("script.tweet").html();
+        var tplMarkup = $("script.tweet").html(),
+            tabTplMarkup = $("script.tab").html(),
+            tabBodyTplMarkup = $("script.tabBody").html();
 
         App.socket.on('all', function(data){
             console.log(data);
             allList.prepend('<li data-id="' + data.id + '">' + data.user.name + " " + data.text +'</li>');
         });
 
-        App.socket.on('tr', function(data){
-            console.log(data);
+        var index = 1
+            tabs = $('.tabs'),
+            tabBodies = $('.tab-body-wrapper');
+        brands.forEach(function(brand) {
+            console.log(brand.name);
+            // Put tabs and tab bodies on page
+            div = $('<div></div>');
+            div.html(_.template(tabTplMarkup, { index: ++index, name: brand.name }));
+            tabs.append(div);
+            div = $('<div id="' + brand.socket + '" class="tabBody"></div>');
+            div.html(_.template(tabBodyTplMarkup, {}));
+            tabBodies.append(div);
 
-            data.text = App.util.url.replaceURLWithHTMLLinks(data.text);
+            // Set up socket message listeners
+            App.socket.on(brand.socket, function(data) {
+                console.log(data);
 
-            tpl = _.template(tplMarkup, { tweet : data });
-            li = $('<li data-id="' + data.id + '"></li>');
-            li.html(tpl);
+                data.text = App.util.url.replaceURLWithHTMLLinks(data.text);
 
-            if(allList.find('[data-id="' + data.id + '"]').length == 0){
-                allList.prepend(li.clone().addClass('slideDown'));
-            }
+                tpl = _.template(tplMarkup, { tweet : data });
+                li = $('<li data-id="' + data.id + '"></li>');
+                li.html(tpl);
 
-            trList.prepend(li.addClass('slideDown'));
-        });
+                if(allList.find('[data-id="' + data.id + '"]').length == 0){
+                    console.log("appending li to all list: ", li);
+                    allList.prepend(li.clone().addClass('slideDown'));
+                }
 
-        App.socket.on('sp', function(data){
-            console.log(data);
-
-            data.text = App.util.url.replaceURLWithHTMLLinks(data.text);
-
-            tpl = _.template(tplMarkup, { tweet : data });
-            li = $('<li data-id="' + data.id + '"></li>');
-            li.html(tpl);
-
-            if(allList.find('[data-id="' + data.id + '"]').length == 0){
-                allList.prepend(li.clone().addClass('slideDown'));
-            }
-
-            spList.prepend(li.addClass('slideDown'));
-        });
-
-        App.socket.on('zd', function(data){
-            console.log(data);
-
-            data.text = App.util.url.replaceURLWithHTMLLinks(data.text);
-
-            tpl = _.template(tplMarkup, { tweet : data });
-            li = $('<li data-id="' + data.id + '"></li>');
-            li.html(tpl);
-
-            if(allList.find('[data-id="' + data.id + '"]').length == 0){
-                allList.prepend(li.clone().addClass('slideDown'));
-            }
-
-            zdList.prepend(li.addClass('slideDown'));
+                $('#' + brand.socket).find('ul.tweet').prepend(li.addClass('slideDown'));
+            });
         });
 
         App.socket.on('metrics', function(data){
@@ -87,15 +102,11 @@ window.Socket = {
             if(data.totalTweets){
                 $('#all .total-tweets-number').text(data.totalTweets);
             }
-            if(data.tweetsPerBrand.tr){
-                $('#tr .total-tweets-number').text(data.tweetsPerBrand.tr);
-            }
-            if(data.tweetsPerBrand.sp){
-                $('#sp .total-tweets-number').text(data.tweetsPerBrand.sp);
-            }
-            if(data.tweetsPerBrand.zd){
-                $('#zd .total-tweets-number').text(data.tweetsPerBrand.zd);
-            }
+            brands.forEach(function(brand) {
+                if(data.tweetsPerBrand[brand.socket]) {
+                    $('#' + brand.socket + ' .total-tweets-number').text(data.tweetsPerBrand[brand.socket]);
+                }
+            });
         });
     }
 }

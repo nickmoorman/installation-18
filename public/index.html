@@ -42,27 +42,21 @@
 		<div class="row">
 
 			<div class="tabs-wrapper">
+				<div class="tabs">
 					<input type="radio" name="tab" id="tab1" class="tab-head" checked="checked"/>
 					<label for="tab1">All</label>
-					<input type="radio" name="tab" id="tab2" class="tab-head" />
-					<label for="tab2">TechRepublic <span class="count-number">15</span></label>
-					<input type="radio" name="tab" id="tab3" class="tab-head" />
-					<label for="tab3">SmartPlanet</label>
-					<input type="radio" name="tab" id="tab4" class="tab-head" />
-					<label for="tab4">ZDNet</label>
+				</div>
 
 				<div class="tab-body-wrapper">
 					<div id="all" class="tab-body">
 						<!-- Inject tweets here -->
 						<div class="large-6 columns scroll">
-
 							<ul class="tweet"></ul>
 
 						</div>
 
 						<!-- Inject metrics here -->
 						<div class="large-6 columns scroll">
-
 							<div class="total-tweets">
 								<span class="total-tweets-number">0</span>
 								<p>Total tweets and rising</p>
@@ -80,51 +74,7 @@
 						</div>
 					</div>
 
-					<div id="tr" class="tab-body">
-						<!-- Inject tweets here -->
-						<div class="large-6 columns scroll">
-							<ul class="tweet"></ul>
-						</div>
-
-						<!-- Inject metrics here -->
-						<div class="large-6 columns scroll">
-							<div class="total-tweets">
-								<span class="total-tweets-number">0</span>
-								<p>Total tweets and rising</p>
-							</div>
-						</div>
-					</div>
-
-					<div id="sp" class="tab-body">
-						<!-- Inject tweets here -->
-						<div class="large-6 columns scroll">
-							<ul class="tweet"></ul>
-						</div>
-
-						<!-- Inject metrics here -->
-						<div class="large-6 columns scroll">
-							<div class="total-tweets">
-								<span class="total-tweets-number">0</span>
-								<p>Total tweets and rising</p>
-							</div>
-						</div>
-					</div>
-
-					<div id="zd" class="tab-body">
-						<!-- Inject tweets here -->
-						<div class="large-6 columns scroll">
-							<ul class="tweet"></ul>
-						</div>
-
-						<!-- Inject metrics here -->
-						<div class="large-6 columns scroll">
-							<div class="total-tweets">
-								<span class="total-tweets-number">0</span>
-								<p>Total tweets and rising</p>
-							</div>
-						</div>
-					</div>
-
+					<!-- Tabs are now dynamic! -->
 
 				</div>
 				<p class="whodidit">Brought to you by some of the baddest motherfucking devs of the B2B brands</p>
@@ -133,7 +83,6 @@
 
 		<!-- BEGIN: Underscore Template Definition. -->
 		<script type="text/template" class="tweet">
-
 			<div>
 				<img src="<%= tweet.user.profile_image_url %>" class="avatar"></img>
 				<span class="name">@<%= tweet.user.screen_name %></span>
@@ -141,7 +90,21 @@
 				<span class="location"><%= tweet.user.location %></span>
 				<p class="text"><%= tweet.text %></p>
 			</div>
+		</script>
+		<script type="text/template" class="tab">
+			<input type="radio" name="tab" id="tab<%= index %>" class="tab-head" />
+			<label for="tab<%= index %>"><%= name %></label>
+		</script>
+		<script type="text/template" class="tabBody">
+			<!-- Inject tweets here -->
+			<div class="large-6 columns scroll">
+				<ul class="tweet"></ul>
+			</div>
 
+			<!-- Inject metrics here -->
+			<div class="large-6 columns scroll">
+
+			</div>
 		</script>
 		<!-- END: Underscore Template Definition. -->
 
