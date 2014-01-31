@@ -2,9 +2,16 @@ var Metric = require('./metric');
 
 module.exports = Metrics;
 
-function Metrics() {
+function Metrics(mode) {
+  this.mode = mode;
   this.totalTweets = 0;
-  this.tweetsPerBrand = new Metric();
+  switch(mode) {
+    case 'sports':
+      this.tweetsPerSport = new Metric();
+      break;
+    default:
+      this.tweetsPerBrand = new Metric();
+  }
   this.tweetsPerLanguage = new Metric();
   this.startTimestamp = Math.round(Date.now()/1000);
 };
@@ -14,15 +21,32 @@ Metrics.prototype.clean = function() {
   var perMinute = {
     all: this.totalTweets/(now-this.startTimestamp)/60
   };
-  for (var brand in this.tweetsPerBrand._data) {
-    perMinute[brand] = this.tweetsPerBrand._data[brand]/(now-this.startTimestamp)/60;
+  var data;
+  switch(this.mode) {
+    case 'sports':
+      data = this.tweetsPerSport._data;
+      break;
+    default:
+      data = this.tweetsPerBrand._data;
   }
 
-  return {
+  for (var key in data) {
+    perMinute[key] = data[key]/(now-this.startTimestamp)/60;
+  }
+
+  var metrics = {
     totalTweets: this.totalTweets,
     tweetsPerMinute: perMinute,
-    tweetsPerBrand: this.tweetsPerBrand._data,
     tweetsPerLanguage: this.tweetsPerLanguage._data,
     startTimestamp: this.startTimestamp
   }
+  switch(this.mode) {
+    case 'sports':
+      metrics['tweetsPerSport'] = this.tweetsPerSport._data;
+      break;
+    default:
+      metrics['tweetsPerBrand'] = this.tweetsPerBrand._data;
+  }
+
+  return metrics;
 }

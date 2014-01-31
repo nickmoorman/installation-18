@@ -29,3 +29,29 @@ exports.brands = [
     accountId: '1415819869'
   }
 ];
+
+exports.sports = [
+  {
+    name: 'Football',
+    socket: 'football',
+    terms: [
+      'football', 'nfl', 'super bowl xlviii', 'super bowl 48', 'superbowl xlviii',
+      'superbowl 48', 'super bowl', 'superbowl', 'xlviii', 'seattle', 'denver',
+      'seahawks', 'hawks', 'broncos'
+    ]
+  },
+  {
+    name: 'Basketball',
+    socket: 'basketball',
+    terms: [
+      'basketball', 'nba'
+    ]
+  },
+  {
+    name: 'Baseball',
+    socket: 'baseball',
+    terms: [
+      'baseball', 'mlb'
+    ]
+  }
+];

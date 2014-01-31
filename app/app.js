@@ -65,10 +65,18 @@ if ('development' == app.get('env')) {
 // ----------------------------------------------------------------------------
 var twitter = new ntwitter(require('./credentials.js').credentials);
 
-// Run brand processor to process tweets by brand
-var BrandProcessor = require('./processors/brands');
-var brandProcessor = new BrandProcessor(config, util);
-brandProcessor.run(twitter);
+// Run processor requested by command line option --mode; default is brands
+switch(argv.mode) {
+  case 'sports':
+    var SportProcessor = require('./processors/sports');
+    var sportProcessor = new SportProcessor(config, util);
+    sportProcessor.run(twitter);
+    break;
+  default:
+    var BrandProcessor = require('./processors/brands');
+    var brandProcessor = new BrandProcessor(config, util);
+    brandProcessor.run(twitter);
+}
 
 // ----------------------------------------------------------------------------
 // Initialize HTTP server
