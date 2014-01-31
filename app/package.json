@@ -1,5 +1,5 @@
 {
-  "name": "application-name",
+  "name": "installation-18",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -10,6 +10,7 @@
     "jade": "*",
     "request": "*",
     "ntwitter": "*",
-    "socket.io": "*"
+    "socket.io": "*",
+    "optimist": "*"
   }
 }

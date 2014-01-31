@@ -8,10 +8,17 @@ var http = require('http');
 var path = require('path');
 var ntwitter = require('ntwitter');
 var sockio = require('socket.io');
+var optimist = require('optimist');
 
 var app = express();
 var server = http.createServer(app);
-var io = sockio.listen(server);
+
+// ----------------------------------------------------------------------------
+// Optimist setup
+// ----------------------------------------------------------------------------
+// --no-socks runtime option to skip socket messages for server-only debug
+optimist.default('nosocks', false);
+var argv = optimist.argv;
 
 // ----------------------------------------------------------------------------
 // Express app setup
@@ -41,9 +48,20 @@ app.get('/sandbox/twitter', sandbox.twitter);
 // ----------------------------------------------------------------------------
 // Initial Socket.IO stuff
 // ----------------------------------------------------------------------------
-io.sockets.on('connection', function(socket) {
-  socket.emit('data', 'connected!');
-});
+var io;
+if (!argv.nosocks) {
+  io = sockio.listen(server);
+
+  io.sockets.on('connection', function(socket) {
+    socket.emit('data', 'connected!');
+  });
+}
+
+function socketSend(socket, message) {
+  if (!argv.nosocks) {
+    io.sockets.emit(socket, message);
+  }
+}
 
 // ----------------------------------------------------------------------------
 // Twitter streaming API consumer, our app's "server"
@@ -108,7 +126,7 @@ var metrics = {
 twitter.stream('statuses/filter', filters, function(stream) {
   stream.on('data', function(tweet) {
     console.log('Received tweet ' + tweet.id);
-    io.sockets.emit('tweet', tweet);
+    socketSend('tweet', tweet);
     metrics.totalTweets += 1;
 
     // Send messages based on brand
@@ -116,7 +134,7 @@ twitter.stream('statuses/filter', filters, function(stream) {
     brands.forEach(function(brand) {
       var regex = new RegExp('(\\b' + brand.terms.join('\\b)|(\\b') + '\\b)', 'i');
       if (tweet.user.id == brand.accountId || regex.test(tweet.text)) {
-        io.sockets.emit(brand.socket, tweet);
+        socketSend(brand.socket, tweet);
 
         // Update brand metrics
         if (metrics.tweetsPerBrand[brand.socket] == undefined) {
@@ -137,7 +155,7 @@ twitter.stream('statuses/filter', filters, function(stream) {
     }
 
     // Send updated metrics
-    io.sockets.emit('metrics', metrics);
+    socketSend('metrics', metrics);
   });
 });
 
