@@ -2,6 +2,10 @@
 
 @import url(animations.css);
 
+/* I-18 page styles
+-----------------------------------------
+*/
+
 body { background:url(../img/bg-body.png) repeat; }
 
 header {
@@ -98,8 +102,27 @@ header {
 p.text a { color:#D93F40; }
 p.text a:hover { color:#ba2829; text-decoration: underline; }
 
+/* Media Queries for site styles
+-----------------------------------------
+*/
+@media only screen and (min-width: 40.063em) {
+	.scroll {
+		height:100%;
+		overflow: auto;
+	}
+}
 
-/* CSS Tabs */
+@media only screen and (max-width: 40em) {
+	.scroll {
+		height:100%;
+		overflow: auto;
+	}
+}
+
+/* CSS Tabs
+-----------------------------------------
+*/
+
 @-webkit-keyframes content-opacity {
   from {
     opacity: 0; }
@@ -739,7 +762,10 @@ input[type="checkbox"] + label, input[type="radio"] + label { margin-left:0; mar
   /*@include animation(0.1s,1s,content-slide-top);*/
 }
 
-/* PIE */
+/* Pie chart madness
+-----------------------------------------
+*/
+
 #pie {
   background-color: #1b7764;
   border-radius: 100px;
