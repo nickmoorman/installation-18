@@ -169,7 +169,7 @@
 					<div id="sp" class="tab-body">
 						<!-- Inject tweets here -->
 						<div class="large-6 columns scroll">
-							<ul></ul>
+							<ul class="tweet"></ul>
 						</div>
 
 						<!-- Inject metrics here -->
@@ -181,7 +181,7 @@
 					<div id="zd" class="tab-body">
 						<!-- Inject tweets here -->
 						<div class="large-6 columns scroll">
-							<ul></ul>
+							<ul class="tweet"></ul>
 						</div>
 
 						<!-- Inject metrics here -->
@@ -195,13 +195,23 @@
 			</div>
 		</div>
 
-		<div class="row">
-			<ul id="tweets">
+		<!-- BEGIN: Underscore Template Definition. -->
+		<script type="text/template" class="tweet">
 
-			</ul>
-		</div>
+			<li>
+				<div>
+					<img src="<%= tweet.user.profile_image_url %>" class="avatar"></img>
+					<span class="name">@<%= tweet.user.screen_name %></span>
+					<span class="date"><%= tweet.created_at %></span>
+					<span class="location"><%= tweet.user.location %></span>
+					<p class="text"><%= tweet.text %></p>
+				</div>
+			</li>
+
+		</script>
+		<!-- END: Underscore Template Definition. -->
 
 		<script type="text/javascript" src="js/main.js"></script>
 
-		</body>
+	</body>
 </html>
