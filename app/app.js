@@ -23,11 +23,23 @@ optimist.default('nosocks', false);
 optimist.default('debug', false);
 var argv = optimist.argv;
 
-function debug(message) {
-  if (argv.debug) {
-    console.log(message);
-  }
+// ----------------------------------------------------------------------------
+// Initial Socket.IO stuff
+// ----------------------------------------------------------------------------
+var io;
+if (!argv.nosocks) {
+  io = sockio.listen(server);
+
+  io.sockets.on('connection', function(socket) {
+    socket.emit('data', 'connected!');
+  });
 }
+
+// ----------------------------------------------------------------------------
+// Load util helper
+// ----------------------------------------------------------------------------
+var Util = require('./objects/util');
+var util = new Util(argv, io);
 
 // ----------------------------------------------------------------------------
 // Express app setup
@@ -49,95 +61,14 @@ if ('development' == app.get('env')) {
 }
 
 // ----------------------------------------------------------------------------
-// Initial Socket.IO stuff
-// ----------------------------------------------------------------------------
-var io;
-if (!argv.nosocks) {
-  io = sockio.listen(server);
-
-  io.sockets.on('connection', function(socket) {
-    socket.emit('data', 'connected!');
-  });
-}
-
-function socketSend(socket, message) {
-  if (!argv.nosocks) {
-    io.sockets.emit(socket, message);
-  }
-}
-
-// ----------------------------------------------------------------------------
 // Twitter streaming API consumer, our app's "server"
 // ----------------------------------------------------------------------------
 var twitter = new ntwitter(require('./credentials.js').credentials);
 
-// Search terms and official account IDs, broken down by brand
-var brands = config.brands;
-
-var searchTerms = brands.map(function(brand) {
-  return brand.terms.join(',');
-}).join(',');
-var officialAccounts = brands.map(function(brand) {
-  return brand.accountId;
-}).join(',');
-
-// Filters to use for Twitter stream
-var filters = {
-  // Terms to search for
-  'track': searchTerms,
-  // Account IDs to search for
-  'follow': officialAccounts
-};
-
-// Various metrics for accumulated data
-function Metric() {
-  this._data = {};
-};
-Metric.prototype.add = function(key) {
-  if (!(key in this._data)) {
-    this._data[key] = 0;
-  }
-  this._data[key] += 1;
-}
-function Metrics() {
-  this.totalTweets = 0;
-  this.tweetsPerBrand = new Metric();
-  this.tweetsPerLanguage = new Metric();
-};
-Metrics.prototype.clean = function() {
-  return {
-    totalTweets: this.totalTweets,
-    tweetsPerBrand: this.tweetsPerBrand._data,
-    tweetsPerLanguage: this.tweetsPerLanguage._data
-  }
-}
-
-var metrics = new Metrics();
-
-twitter.stream('statuses/filter', filters, function(stream) {
-  stream.on('data', function(tweet) {
-    console.log('Received tweet ' + tweet.id);
-    socketSend('tweet', tweet);
-    metrics.totalTweets += 1;
-
-    // Send messages based on brand
-    // TODO: Special handling for ZDNet tweets with t.co URLs
-    brands.forEach(function(brand) {
-      var regex = new RegExp('(\\b' + brand.terms.join('\\b)|(\\b') + '\\b)', 'i');
-      if (tweet.user.id == brand.accountId || regex.test(tweet.text)) {
-        socketSend(brand.socket, tweet);
-
-        metrics.tweetsPerBrand.add(brand.socket);
-      }
-    });
-
-    metrics.tweetsPerLanguage.add(tweet.lang);
-
-    // Send updated metrics
-    socketSend('metrics', metrics.clean());
-    debug(metrics.clean());
-  });
-});
+// Run brand processor to process tweets by brand
+var BrandProcessor = require('./processors/brands');
+var brandProcessor = new BrandProcessor(config, util);
+brandProcessor.run(twitter);
 
 // ----------------------------------------------------------------------------
 // Initialize HTTP server
