@@ -733,7 +733,7 @@ input[type="checkbox"] + label, input[type="radio"] + label { margin-left:0; mar
   }
 
 .tabs-wrapper a { z-index:10; color:#fff; }
-#tab1:checked + label, #tab2:checked + label, #tab3:checked + label, #tab4:checked + label {
+#tab1:checked + label, #tab2:checked + label, #tab3:checked + label, #tab4:checked + label, #tab5:checked + label {
   background: #D93F40;
   color: #f2f2f2; }
 
@@ -745,7 +745,7 @@ input[type="checkbox"] + label, input[type="radio"] + label { margin-left:0; mar
 
 .tab-body-wrapper {
   background: rgba(0,0,0,.05);
-  height:680px;
+  height:100%;
   overflow: hidden;
   border-top: #D93F40 5px solid;
   -webkit-animation-delay: 0.2s;
@@ -770,7 +770,7 @@ input[type="checkbox"] + label, input[type="radio"] + label { margin-left:0; mar
       }
   }
 
-#tab1:checked ~ .tab-body-wrapper #all, #tab2:checked ~ .tab-body-wrapper #tr, #tab3:checked ~ .tab-body-wrapper #sp, #tab4:checked ~ .tab-body-wrapper #zd, #tab4:checked ~ .tab-body-wrapper #tpr {
+#tab1:checked ~ .tab-body-wrapper #all, #tab2:checked ~ .tab-body-wrapper #tr, #tab3:checked ~ .tab-body-wrapper #sp, #tab4:checked ~ .tab-body-wrapper #zd, #tab5:checked ~ .tab-body-wrapper #tpr {
   position: relative;
   top: 0px;
   /* Choose one */
