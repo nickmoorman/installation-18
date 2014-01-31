@@ -6,7 +6,8 @@ head.js([
 	{"router" : "js/router.js"},
     {"socket" : "js/socket.js"},
     {"utils" : "js/utils.js"},
-    {"socket.io" : "/socket.io/socket.io.js"}
+    {"socket.io" : "/socket.io/socket.io.js"},
+    {"langPie" : "js/langPie.js"}
 ]);
 
 head.ready(function() {
@@ -21,5 +22,7 @@ head.ready(function() {
 
     App.initialize();
     Socket.initialize();
+
+    LangPie.initialize();
 
 });

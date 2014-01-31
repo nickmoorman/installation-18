@@ -13,10 +13,10 @@ window.Socket = {
     initialize: function() {
         console.log('window.Socket Initialized');
 
-        var allList = $('#all').find('ul'),
-            trList = $('#tr').find('ul'),
-            spList = $('#sp').find('ul'),
-            zdList = $('#zd').find('ul');
+        var allList = $('#all').find('ul.tweet'),
+            trList = $('#tr').find('ul.tweet'),
+            spList = $('#sp').find('ul.tweet'),
+            zdList = $('#zd').find('ul.tweet');
 
         // Grab the HTML out of our template tag and pre-compile it.
         var tplMarkup = $("script.tweet").html();
@@ -79,6 +79,7 @@ window.Socket = {
 
         App.socket.on('metrics', function(data){
             console.log("metrics", data);
+            LangPie.drawChart(data.tweetsPerLanguage);
         });
     }
 }
