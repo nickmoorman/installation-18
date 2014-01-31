@@ -34,7 +34,6 @@ BrandProcessor.prototype.run = function(twitter) {
 
   twitter.stream('statuses/filter', filters, function(stream) {
     stream.on('data', function(tweet) {
-      self.util.debug(brands);
       console.log('Received tweet ' + tweet.id);
       self.util.socketSend('tweet', tweet);
       metrics.totalTweets += 1;
