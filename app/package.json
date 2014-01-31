@@ -11,6 +11,7 @@
     "request": "*",
     "ntwitter": "*",
     "socket.io": "*",
-    "optimist": "*"
+    "optimist": "*",
+    "language-tags": "*"
   }
 }

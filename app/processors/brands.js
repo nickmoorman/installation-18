@@ -1,3 +1,4 @@
+var tags = require('language-tags');
 var Metrics = require('../objects/metrics');
 
 module.exports = BrandProcessor;
@@ -49,7 +50,17 @@ BrandProcessor.prototype.run = function(twitter) {
         }
       });
 
-      metrics.tweetsPerLanguage.add(tweet.lang);
+      // Get the proper language name if possible and add to metrics
+      var t = tags.subtags(tweet.lang);
+      var lang = tweet.lang;
+      if (t.length > 0) {
+        try {
+          lang = t[0].data.record.Description[0];
+        } catch (e) {
+          console.error('Error determining language for "' + tweet.lang + '"');
+        }
+      }
+      metrics.tweetsPerLanguage.add(lang);
 
       // Send updated metrics
       self.util.socketSend('metrics', metrics.clean());
