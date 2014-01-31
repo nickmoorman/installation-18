@@ -12,6 +12,7 @@
     "ntwitter": "*",
     "socket.io": "*",
     "optimist": "*",
-    "language-tags": "*"
+    "language-tags": "*",
+    "limdu": "*"
   }
 }
