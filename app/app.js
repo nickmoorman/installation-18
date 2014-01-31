@@ -3,7 +3,6 @@
  */
 
 var express = require('express');
-var sandbox = require('./routes/sandbox');
 var http = require('http');
 var path = require('path');
 var ntwitter = require('ntwitter');
@@ -38,12 +37,6 @@ app.use(express.static(path.join(__dirname, '../public')));
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
-
-// ----------------------------------------------------------------------------
-// Routes
-// ----------------------------------------------------------------------------
-app.get('/sandbox', sandbox.sandbox);
-app.get('/sandbox/twitter', sandbox.twitter);
 
 // ----------------------------------------------------------------------------
 // Initial Socket.IO stuff
