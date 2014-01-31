@@ -19,53 +19,44 @@ App.router.brands = Backbone.Router.extend({
         spList = $('#sp').find('ul');
         zdList = $('#zd').find('ul');
 
-        App.socket.on('tweet', function(data){
+        App.socket.on('all', function(data){
             console.log(data);
-            allList.append('<li>' + data.user.name + " " + data.text +'</li>');
+            allList.append('<li data-id="' + data.id + '">' + data.user.name + " " + data.text +'</li>');
         });
-        App.socket.on('tr', function(tweet) {
-          console.log('tr tweet ' + tweet.id);
+
+        App.socket.on('tr', function(data){
+            console.log(data);
+            if(allList.find('[data-id="' + data.id + '"]').length == 0){
+                allList.append('<li data-id="' + data.id + '">' + data.user.name + " " + data.text +'</li>');
+            }
+            trList.append('<li data-id="' + data.id + '">' + data.user.name + " " + data.text +'</li>');
         });
-        App.socket.on('sp', function(tweet) {
-          console.log('sp tweet ' + tweet.id);
+
+        App.socket.on('sp', function(data){
+            console.log(data);
+            if(allList.find('[data-id="' + data.id + '"]').length == 0){
+                allList.append('<li data-id="' + data.id + '">' + data.user.name + " " + data.text +'</li>');
+            }
+            spList.append('<li data-id="' + data.id + '">' + data.user.name + " " + data.text +'</li>');
         });
-        App.socket.on('zd', function(tweet) {
-          console.log('zd tweet ' + tweet.id);
+
+        App.socket.on('zd', function(data){
+            console.log(data);
+            if(allList.find('[data-id="' + data.id + '"]').length == 0){
+                allList.append('<li data-id="' + data.id + '">' + data.user.name + " " + data.text +'</li>');
+            }
+            zdList.append('<li data-id="' + data.id + '">' + data.user.name + " " + data.text +'</li>');
         });
-        App.socket.on('tpr', function(tweet) {
-          console.log('tpr tweet ' + tweet.id);
+
+        App.socket.on('metrics', function(data){
+            console.log("metrics", data);
         });
+
     },
 
     brand:function (brand) {
         console.log('Brand requested: ' + brand);
         //alert('All brands requested ' + brand);
-    },
-
-
-    list:function () {
-        // this.changePage(new App.view.user.list({model: App.userCollection.findAll()}));
-
-    },
-
-    show:function (id) {
-        // var user = App.userCollection.localStorage.find(new App.model.user({id: id}));
-        // if (user)
-        // {
-        //     this.changePage(new App.view.user.show({model:user}));
-        // }
-        // else
-        // {
-        //     var model = {error_message: 'User not found'};
-        //     this.changePage(new App.view.message.error({model:model}));
-
-        // }
-    },
-
-    about:function () {
-        // var model = {about_message: 'About this app'};
-        // this.changePage(new App.view.message.about({model:model}));
-
     },
 
     changePage: function (page){
