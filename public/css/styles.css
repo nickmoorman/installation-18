@@ -72,8 +72,8 @@ header {
 }
 
 .scroll {
-	height:650px;
-	overflow: auto;
+	height:100%;
+/*	overflow: auto;*/
 }
 
 .scroll > div:nth-child(2) { text-align: center; }
