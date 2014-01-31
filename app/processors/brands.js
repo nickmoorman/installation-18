@@ -39,7 +39,6 @@ BrandProcessor.prototype.run = function(twitter) {
       metrics.totalTweets += 1;
 
       // Send messages based on brand
-      // TODO: Special handling for ZDNet tweets with t.co URLs
       brands.forEach(function(brand) {
         var regex = new RegExp('(\\b' + brand.terms.join('\\b)|(\\b') + '\\b)', 'i');
         if (tweet.user.id == brand.accountId || regex.test(tweet.text)) {

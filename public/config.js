@@ -4,7 +4,7 @@ exports.brands = [
     name: 'TechRepublic',
     shortname: 'TR',
     socket: 'tr',
-    terms: ['techrepublic', 'tech republic', 't.co'],
+    terms: ['techrepublic', 'tech republic', 'tek.io'],
     accountId: '6486602'
   },
   {
