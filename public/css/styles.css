@@ -87,6 +87,9 @@ header {
 	margin:0 10px 10px 77px;
 }
 
+p.text a { color:#D93F40; }
+p.text a:hover { color:#ba2829; text-decoration: underline; }
+
 
 /* CSS Tabs */
 @-webkit-keyframes content-opacity {
