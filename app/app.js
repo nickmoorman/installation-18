@@ -12,6 +12,9 @@ var optimist = require('optimist');
 var app = express();
 var server = http.createServer(app);
 
+// Load config file
+var config = require('../public/config.js');
+
 // ----------------------------------------------------------------------------
 // Optimist setup
 // ----------------------------------------------------------------------------
@@ -69,36 +72,8 @@ function socketSend(socket, message) {
 var twitter = new ntwitter(require('./credentials.js').credentials);
 
 // Search terms and official account IDs, broken down by brand
-var brands = [
-  {
-    name: 'TechRepublic',
-    shortname: 'TR',
-    socket: 'tr',
-    terms: ['techrepublic', 'tech republic', 't.co'],
-    accountId: '6486602'
-  },
-  {
-    name: 'SmartPlanet',
-    shortname: 'SP',
-    socket: 'sp',
-    terms: ['smartplanet', 'smart planet', 'smrt.io'],
-    accountId: '34731203'
-  },
-  {
-    name: 'ZDNet',
-    shortname: 'ZD',
-    socket: 'zd',
-    terms: ['zdnet', 'zd net', 'z d net', 'zd.net'],
-    accountId: '3819701'
-  },
-  {
-    name: 'Tech Pro Research',
-    shortname: 'TPR',
-    socket: 'tpr',
-    terms: ['techproresearch', 'tech pro research'],
-    accountId: '1415819869'
-  }
-];
+var brands = config.brands;
+
 var searchTerms = brands.map(function(brand) {
   return brand.terms.join(',');
 }).join(',');
