@@ -682,6 +682,7 @@ p.text a:hover { color:#ba2829; text-decoration: underline; }
 
   to {
     opacity: 1; } }
+
 input[type="checkbox"] + label, input[type="radio"] + label { margin-left:0; margin-right:0; }
 
 .tabs > div {
@@ -769,7 +770,7 @@ input[type="checkbox"] + label, input[type="radio"] + label { margin-left:0; mar
       }
   }
 
-#tab1:checked ~ .tab-body-wrapper #all, #tab2:checked ~ .tab-body-wrapper #tr, #tab3:checked ~ .tab-body-wrapper #sp, #tab4:checked ~ .tab-body-wrapper #zd {
+#tab1:checked ~ .tab-body-wrapper #all, #tab2:checked ~ .tab-body-wrapper #tr, #tab3:checked ~ .tab-body-wrapper #sp, #tab4:checked ~ .tab-body-wrapper #zd, #tab4:checked ~ .tab-body-wrapper #tpr {
   position: relative;
   top: 0px;
   /* Choose one */

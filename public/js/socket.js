@@ -49,7 +49,7 @@ window.Socket = {
 
         // Grab the HTML out of our template tag and pre-compile it.
         var tplMarkup = $("script.tweet").html(),
-            tabTplMarkup = $("script.tab").html(),
+            tabTplMarkup = $("script.tabTpl").html(),
             tabBodyTplMarkup = $("script.tabBody").html();
 
         App.socket.on('all', function(data){
@@ -58,15 +58,23 @@ window.Socket = {
         });
 
         var index = 1
-            tabs = $('.tabs'),
-            tabBodies = $('.tab-body-wrapper');
+            tabBodies = $('.tab-body-wrapper'),
+            tabsWrapper = $('.tabs-wrapper');
+
         brands.forEach(function(brand) {
             console.log(brand.name);
-            // Put tabs and tab bodies on page
+            // Put tabs on page
             div = $('<div></div>');
             div.html(_.template(tabTplMarkup, { index: ++index, name: brand.name }));
-            tabs.append(div);
-            div = $('<div id="' + brand.socket + '" class="tabBody"></div>');
+
+            lastEl = tabsWrapper.find('label:last-of-type');
+
+            kids = div.children();
+            lastEl.after(kids[1]);
+            lastEl.after(kids[0]);
+
+            // Put tab body on page
+            div = $('<div id="' + brand.socket + '" class="tab-body"></div>');
             div.html(_.template(tabBodyTplMarkup, {}));
             tabBodies.append(div);
 
@@ -86,6 +94,7 @@ window.Socket = {
                 }
 
                 $('#' + brand.socket).find('ul.tweet').prepend(li.addClass('slideDown'));
+                console.log("brand UL: ",$('#' + brand.socket).find('ul.tweet'));
             });
         });
 
