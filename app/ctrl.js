@@ -2,7 +2,7 @@ var daemon = require("daemonize2").setup({
     main: "app.js",
     name: "installation18",
     pidfile: "installation18.pid",
-    silent: true
+    silent: false
 });
 
 daemon
