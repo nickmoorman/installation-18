@@ -735,4 +735,81 @@ input[type="checkbox"] + label, input[type="radio"] + label { margin-left:0; mar
   /* @include animation(0.2s,0.8s,content-pop-in); */
   /* @include animation(0.2s,0.8s,content-pop-out); */
   /* @include animation(0.1s,1s,content-slide-bot); */
-  /*@include animation(0.1s,1s,content-slide-top);*/ }
+  /*@include animation(0.1s,1s,content-slide-top);*/
+}
+
+/* PIE */
+#pie {
+  background-color: #1b7764;
+  border-radius: 100px;
+  font: 16px/1.0 tahoma;
+  height: 200px;
+  position: relative;
+  width: 200px;
+  margin:60px auto;
+}
+#pie::after {
+  align-items: center;
+  background-color: #fff;
+  border-radius: 120px;
+  /*content: "Pie Chart";*/
+  display: flex;
+  height: 120px;
+  justify-content: center;
+  left: 40px;
+  position: absolute;
+  text-transform: uppercase;
+  top: 40px;
+  width: 120px;
+}
+
+.piece {
+  height: 200px;
+  left: 0px;
+  position: absolute;
+  top: 0px;
+  width: 200px;
+}
+.piece::after {
+  background-color: #1b7764;
+  border-radius: 0px 100px 100px 0px;
+  content: "";
+  display: block;
+  height: 200px;
+  left: 100px;
+  position: absolute;
+  top: 0px;
+  width: 100px;
+}
+
+.piece.legend-item-1::after {
+  background-color: #28CBB8;
+}
+.piece.legend-item-2::after {
+  background-color: #D1D55C;
+}
+.piece.legend-item-3::after {
+  background-color: #DEE99B;
+}
+.piece.legend-item-4::after {
+  background-color: #32c39d;
+}
+.piece.legend-item-5::after {
+  background-color: #F1536C;
+}
+.piece.legend-item-6::after {
+  background-color: #DB2159;
+}
+.piece.legend-item-7::after {
+  background-color: #E79E2B;
+}
+.piece.legend-item-8::after {
+  background-color: #27B2B5;
+}
+.piece.legend-item-9::after {
+  background-color: #5C4648;
+}
+.piece.legend-item-10::after {
+  background-color: #334647;
+}
+
