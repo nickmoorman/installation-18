@@ -73,6 +73,7 @@ header {
 
 .scroll {
 	height:100%;
+  padding-top:12px;
 /*	overflow: auto;*/
 }
 
@@ -93,6 +94,7 @@ header {
   	-webkit-box-shadow: 0 2px 1px 0 rgba(0,0,0,0.16);
   	box-shadow:         0 2px 1px 0 rgba(0,0,0,0.16);
   	margin-bottom:12px;
+    padding:6px;
   	width:95%;
   	overflow: auto;
 }
