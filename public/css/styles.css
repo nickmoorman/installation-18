@@ -141,15 +141,11 @@ p.text a:hover { color:#ba2829; text-decoration: underline; }
 -----------------------------------------
 */
 @media only screen and (min-width: 40.063em) {
-	.scroll {
 
-	}
 }
 
 @media only screen and (max-width: 40em) {
-	.scroll {
 
-	}
 }
 
 /* CSS Tabs
@@ -713,7 +709,7 @@ input[type="checkbox"] + label, input[type="radio"] + label { margin-left:0; mar
     /*@include transform (translate(0,-0.2em));*/ }
     @media screen and (max-width: 1600px) {
       .tabs-wrapper label {
-        width: 15%; }
+        width: 20%; }
     }
 
     @media screen and (max-width: 900px) {
@@ -725,7 +721,7 @@ input[type="checkbox"] + label, input[type="radio"] + label { margin-left:0; mar
       .tabs-wrapper label {
         width: 100%;
         display: block;
-        border-bottom: 2px solid #4d4c47;
+        border-bottom: 2px solid #444;
         }
     }
 
